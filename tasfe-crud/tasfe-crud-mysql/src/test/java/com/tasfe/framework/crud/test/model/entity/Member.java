@@ -10,7 +10,7 @@ import javax.persistence.Table;
 /**
  * Created by Lait on 2017/7/10.
  */
-@Alias("User")
+@Alias("Member")
 @Table(name = "t_member")
 @Storager
 public class Member {

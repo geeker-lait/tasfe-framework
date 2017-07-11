@@ -61,11 +61,10 @@ public class CrudTest {
 
     @Test
     public void testInsert() throws Exception {
-        /*User user = getUser();
-        crudTemplate.insert(user);
 
-        crudTemplate.insertBatch(getUsers(10));*/
+        crudTemplate.insert(getUser());
 
+        crudTemplate.insertBatch(getUsers(10));
 
         Member member = new Member();
         member.setEmail("lait");

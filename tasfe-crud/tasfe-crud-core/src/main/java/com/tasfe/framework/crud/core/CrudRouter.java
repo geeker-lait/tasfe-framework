@@ -33,7 +33,7 @@ public class CrudRouter implements ApplicationContextAware {
         if (storager != null) {
             StoragerType[] storagerTypes = storager.storage();
             for (StoragerType storagerType : storagerTypes) {
-                Crudable crudable = (Crudable)applicationContext.getBean(storagerType.toString());
+                Crudable crudable = (Crudable)applicationContext.getBean(storagerType.toString().toLowerCase());
                 CrudMethod cm = CrudMethod.get(queryParam.getCrudMethod());
                 switch (cm) {
                     case IN:

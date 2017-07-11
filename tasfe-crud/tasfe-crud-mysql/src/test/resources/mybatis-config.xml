@@ -34,7 +34,7 @@
     <typeAliases>
         <!-- 每一个在包 com.tasfe.framework.test.model.entity 中的 Java Bean，在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名。 -->
         <!-- 比如 com.tasfe.framework.test.model.entity.User 的别名为 User；若有注解，则别名为其注解值。 -->
-        <package name="com.tasfe.framework.test.model.entity"/>
+        <package name="com.tasfe.framework.crud.test.model.entity"/>
     </typeAliases>
     
     <!--
