@@ -3,7 +3,7 @@
 	<substitutionProperty name="log.base" value="./logs" />
 	<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
 	<property name="LOG_HOME" value="${user.dir}/logs/tasfe" />
-	<property name="MOBANKER_LOG" value="root" />
+	<property name="tasfe_LOG" value="root" />
 	<property name="ACTIVEMQ_LOG" value="activeMQ" />
 	<property name="RABBITMQ_LOG" value="rabbitMQ" />
 	<!-- 控制台输出 -->
@@ -25,7 +25,7 @@
 		<!-- <File>${log.base}/log_log.txt</File> -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!--日志文件输出的文件名 -->
-			<FileNamePattern>${LOG_HOME}/${MOBANKER_LOG}.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<FileNamePattern>${LOG_HOME}/${tasfe_LOG}.%d{yyyy-MM-dd}.log</FileNamePattern>
 			<!--日志文件保留天数 -->
 			<MaxHistory>30</MaxHistory>
 		</rollingPolicy>
@@ -44,7 +44,7 @@
         <Encoding>UTF-8</Encoding>
         <File>${log.base}/log_log.txt</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${log.base}/mobanker_log-%d{yyyy-MM-dd}-%i.txt</FileNamePattern>
+            <FileNamePattern>${log.base}/tasfe_log-%d{yyyy-MM-dd}-%i.txt</FileNamePattern>
             <MaxHistory>10</MaxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <MaxFileSize>2MB</MaxFileSize>

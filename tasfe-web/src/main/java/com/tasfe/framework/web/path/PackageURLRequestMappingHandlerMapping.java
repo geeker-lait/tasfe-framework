@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
  * Created by Lait on 2017/7/7.
  * RequestMapping处理器, 将Action类的包名转换成url的版本号.
  * 例：
- * packageBase: com.mobanker.democenter
+ * packageBase: com.tasfe.democenter
  * replacement: v:|_:.|, 即v替换成空字符, 下划线替换成圆点
  * url root: /democenter/
  * com.tasfe.democenter.api.controller.OrderController 类的RequestMapping值为:order, 某成员方法的RequestMapping值为: /getOrder, 则 转换后的完整url为: /order/getOrder

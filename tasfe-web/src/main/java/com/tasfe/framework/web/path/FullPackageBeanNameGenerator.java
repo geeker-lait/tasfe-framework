@@ -33,7 +33,7 @@ public class FullPackageBeanNameGenerator extends AnnotationBeanNameGenerator {
 			return super.buildDefaultBeanName(definition);
 		}
 		
-		String fullName = definition.getBeanClassName(); //e.g.: com.mobanker.tkj.api.action.UserAction
+		String fullName = definition.getBeanClassName(); //e.g.: com.tasfe.tkj.api.action.UserAction
 		char delimiter = dotReplacement > 0 ? dotReplacement : DEFAULT_DOT_REPLACEMENT;
 		String[] names = fullName.split("\\.");
 		StringBuilder beanName = new StringBuilder("");

@@ -11,9 +11,9 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- ############### mobanker framework jars ################## -->
+        <!-- ############### tasfe framework jars ################## -->
         <!--<dependency>
-            <groupId>com.mobanker.config</groupId>
+            <groupId>com.tasfe.config</groupId>
             <artifactId>zookeeperConfig</artifactId>
         </dependency>-->
         <!-- ###################### sth jars ###########################-->

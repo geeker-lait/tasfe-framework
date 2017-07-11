@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * url root: /democenter/
  * com.tasfe.democenter.api.controller.OrderController 类的RequestMapping值为:order, 某成员方法的RequestMapping值为: /getOrder, 则 转换后的完整url为: /order/getOrder
  * com.tasfe.democenter.api.controller.v2_1_7.OrderController 类的RequestMapping值为order, 某成员方法的RequestMapping值为: /getOrder, 则 转换后的完整url为: /2.1.7/order/getOrder
- * 这个时候的docBase参考tomcat的server.xml的docBase指定为：com.mobanker.democenter.api.controller
+ * 这个时候的docBase参考tomcat的server.xml的docBase指定为：com.tasfe.democenter.api.controller
  * 这个时候的contextPath参考tomcat的server.xml的指定为path：/demo(项目名)
  */
 public class PackageURLRequestMappingHandlerMapping extends RequestMappingHandlerMapping {

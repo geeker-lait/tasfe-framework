@@ -14,7 +14,7 @@ public class NettyServletConfig implements ServletConfig {
 
     @Override
     public String getServletName() {
-        return "mobanker";
+        return "tasfe";
     }
 
     @Override

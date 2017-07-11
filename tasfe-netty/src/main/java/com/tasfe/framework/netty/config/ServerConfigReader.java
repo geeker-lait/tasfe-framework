@@ -22,7 +22,7 @@ public final class ServerConfigReader {
     /**
      * 默认读取配置文件的路径
      */
-    public static final String MOBANKER_SERVER_PROPERTIES = "server.properties";
+    public static final String TASFE_SERVER_PROPERTIES = "server.properties";
     /**
      * 系统配置文件读取器
      */
@@ -35,7 +35,7 @@ public final class ServerConfigReader {
     //private ResourceBundle resourceBundle = null;
     private Properties properties = new Properties();
 
-    private String serverProperties = MOBANKER_SERVER_PROPERTIES;
+    private String serverProperties = TASFE_SERVER_PROPERTIES;
 
     /**
      * 私有构造器
