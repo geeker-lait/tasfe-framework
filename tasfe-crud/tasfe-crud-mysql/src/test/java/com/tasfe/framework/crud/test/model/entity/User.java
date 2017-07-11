@@ -7,7 +7,7 @@ import com.tasfe.framework.crud.api.StoragerType;
 import com.tasfe.framework.crud.api.annotation.Storager;
 import org.apache.ibatis.type.Alias;
 
-import com.tasfe.framework.crud.type.DataState;
+import com.tasfe.framework.crud.mysql.type.DataState;
 
 /**
  * Created by Lait on 2017/4/15

@@ -1,15 +1,10 @@
 package com.tasfe.framework.crud.test.service;
 
-import com.tasfe.framework.crud.MysqlTemplate;
-import com.tasfe.framework.crud.api.CrudOperator;
-import com.tasfe.framework.crud.business.CrudBusiness;
 import com.tasfe.framework.crud.core.CrudTemplate;
-import com.tasfe.framework.crud.test.business.UserBusiness;
 import com.tasfe.framework.crud.test.model.entity.Member;
 import com.tasfe.framework.crud.test.model.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tasfe.framework.crud.test.dao.UserMapper">
-    <resultMap type="com.tasfe.framework.crud.test.model.entity.User" id="UserResult">
+<mapper namespace="UserMapper">
+    <resultMap type="User" id="UserResult">
         <result property="id" column="id"/>
         <result property="userName" column="user_name"/>
         <result property="password" column="password"/>
@@ -15,7 +15,7 @@
         ssm_user where userName=#{userName} and password=#{password} limit 1
     </select>-->
 
-    <select id="getUser" parameterType="com.tasfe.framework.crud.test.model.entity.User" resultMap="UserResult">
+    <select id="getUser" parameterType="User" resultMap="UserResult">
         select * from t_user
         <where>
             id=#{id}

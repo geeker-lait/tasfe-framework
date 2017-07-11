@@ -7,11 +7,10 @@ import java.util.Map;
 
 import com.tasfe.framework.crud.api.dto.QueryParam;
 import com.tasfe.framework.crud.test.model.entity.User;
+import com.tasfe.framework.crud.mysql.type.DataState;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.tasfe.framework.crud.type.DataState;
 
 /**
  * Created by Lait on 2017/4/15

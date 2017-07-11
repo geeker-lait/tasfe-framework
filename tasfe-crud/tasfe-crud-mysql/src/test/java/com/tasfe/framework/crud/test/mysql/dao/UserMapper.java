@@ -1,4 +1,4 @@
-package com.tasfe.framework.crud.test.business;
+package com.tasfe.framework.crud.test.mysql.dao;
 
 import com.tasfe.framework.crud.test.model.entity.User;
 
@@ -7,6 +7,9 @@ import java.util.List;
 /**
  * Created by Lait on 2017/7/7.
  */
-public interface UserBusiness {
+public interface UserMapper {
+
     List<User> findUsers();
+
+    User getUser(User user);
 }
