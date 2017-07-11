@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="UserMapper">
+<mapper namespace="com.tasfe.framework.crud.test.mysql.dao.UserMapper">
     <resultMap type="User" id="UserResult">
         <result property="id" column="id"/>
         <result property="userName" column="user_name"/>
@@ -10,10 +10,10 @@
         <result property="email" column="email"/>
     </resultMap>
 
-   <!-- <select id="login" parameterType="User" resultMap="UserResult">
-        select * from
-        ssm_user where userName=#{userName} and password=#{password} limit 1
-    </select>-->
+    <!-- <select id="login" parameterType="User" resultMap="UserResult">
+         select * from
+         ssm_user where userName=#{userName} and password=#{password} limit 1
+     </select>-->
 
     <select id="getUser" parameterType="User" resultMap="UserResult">
         select * from t_user

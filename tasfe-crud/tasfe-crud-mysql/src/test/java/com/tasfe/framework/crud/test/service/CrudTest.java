@@ -3,8 +3,10 @@ package com.tasfe.framework.crud.test.service;
 import com.tasfe.framework.crud.core.CrudTemplate;
 import com.tasfe.framework.crud.test.model.entity.Member;
 import com.tasfe.framework.crud.test.model.entity.User;
+import com.tasfe.framework.crud.test.mysql.dao.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -38,6 +40,10 @@ public class CrudTest {
      */
     //@Resource(name="hiveTemplate")
     //CrudOperator<User> hiveOperator;
+
+    @Autowired
+    UserMapper userMapper;
+
 
     private User getUser(){
         User u = new User();
@@ -83,12 +89,17 @@ public class CrudTest {
 
     @Test
     public void testGet() throws Exception {
-        User user = crudTemplate.get(User.class,25L);
+        User user = new User();
+        user.setId(25L);
+        user = userMapper.getUser(user);
 
-//        List<User> users = crudTemplate.gets(User.class,1L,2L,3L);
-//        System.out.println(user +"====="+ users);
 
-        List<User> users = crudTemplate.gets(user);
+        user = crudTemplate.get(User.class,25L);
+
+        List<User> users = crudTemplate.gets(User.class,1L,2L,3L);
+        System.out.println(user +"====="+ users);
+
+        users = crudTemplate.gets(user);
         System.out.println(user +"====="+ users.size());
 
 
