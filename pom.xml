@@ -91,21 +91,21 @@
     <dependencyManagement>
         <dependencies>
 
-            <!--################### tasfe crud module ########################-->
+            <!--################### tasfe config module ########################-->
             <dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-config</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-config-api</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-config-service</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
 
 
@@ -113,13 +113,13 @@
 			<dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-util</artifactId>
-                <version>${tasfe.version}</version>
+                <version>${project.version}</version>
             </dependency>
 
 			<dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-netty</artifactId>
-                <version>${tasfe.version}</version>
+                <version>${project.version}</version>
             </dependency>
 
 
@@ -127,27 +127,27 @@
             <dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-crud-api</artifactId>
-                <version>${tasfe.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-crud-core</artifactId>
-                <version>${tasfe.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-crud-hbase</artifactId>
-                <version>${tasfe.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-crud-hive</artifactId>
-                <version>${tasfe.version}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.tasfe.framework</groupId>
                 <artifactId>tasfe-crud-mysql</artifactId>
-                <version>${tasfe.version}</version>
+                <version>${project.version}</version>
             </dependency>
 
 

@@ -29,11 +29,18 @@ public class CrudRouter implements ApplicationContextAware {
     @Route
     public Object route(QueryParam queryParam) throws Exception {
         Class<?> clazz = queryParam.getQueryClazz();
-        Storager storager = clazz.getAnnotation(Storager.class);
-        if (storager != null) {
-            StoragerType[] storagerTypes = storager.storage();
+        if(clazz !=null ){
+            Storager storager = clazz.getAnnotation(Storager.class);
+            Crudable crudable = null;
+            StoragerType[] storagerTypes = null;
+            if (storager != null) {
+                storagerTypes = storager.storage();
+            } else {
+                storagerTypes = new StoragerType[]{StoragerType.MYSQL};
+            }
+
             for (StoragerType storagerType : storagerTypes) {
-                Crudable crudable = (Crudable)applicationContext.getBean(storagerType.toString().toLowerCase());
+                crudable = (Crudable)applicationContext.getBean(storagerType.toString().toLowerCase());
                 CrudMethod cm = CrudMethod.get(queryParam.getCrudMethod());
                 switch (cm) {
                     case IN:
@@ -60,10 +67,12 @@ public class CrudRouter implements ApplicationContextAware {
                         break;
                     case DELS:
                         break;
-
                 }
             }
+        } else {
+            // 做点提示
         }
+
         return null;
     }
 
