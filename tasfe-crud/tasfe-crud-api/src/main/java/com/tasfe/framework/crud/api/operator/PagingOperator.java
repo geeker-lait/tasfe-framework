@@ -15,5 +15,5 @@ public interface PagingOperator {
      * @param example 查询条件参数
      * @return 分页记录列表
      */
-    <Entity> List<Entity> pagination(Pagination pager, Entity example);
+    <Entity> List<Entity> pagination(Pagination pager, Entity example) throws Exception;
 }

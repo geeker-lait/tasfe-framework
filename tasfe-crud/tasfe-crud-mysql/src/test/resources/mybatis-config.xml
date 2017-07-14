@@ -15,7 +15,7 @@
         <!-- 是否允许单一语句返回多结果集（需要兼容驱动） -->
         <setting name="multipleResultSetsEnabled" value="true"/>
         <setting name="useColumnLabel" value="true"/>
-        <setting name="useGeneratedKeys" value="false"/>
+        <setting name="useGeneratedKeys" value="true"/>
         <setting name="autoMappingBehavior" value="PARTIAL"/>
         <setting name="defaultExecutorType" value="SIMPLE"/>
         <setting name="defaultStatementTimeout" value="25"/>

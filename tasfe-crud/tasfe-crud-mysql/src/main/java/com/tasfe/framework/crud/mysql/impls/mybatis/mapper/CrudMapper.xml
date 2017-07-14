@@ -3,7 +3,7 @@
 
 <mapper namespace="com.tasfe.framework.crud.mysql.dao.RdbCrudDao">
 
-    <insert id="_in" parameterType="map">
+    <insert id="_in" parameterType="map" keyProperty="id">
         insert into ${tableName}
         <foreach item="columnValue" index="columnName" collection="columnValueMapping" open="(" separator="," close=")">
             ${columnName}
@@ -55,6 +55,12 @@
 
             <if test="conditionExp != null">
                 ${conditionExp}
+            </if>
+
+            <if test="conditionParam != null">
+                <foreach item="column" index="index" collection="conditionParam" separator="and">
+                    ${index} = #{column}
+                </foreach>
             </if>
         </where>
 

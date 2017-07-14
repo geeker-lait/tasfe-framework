@@ -154,8 +154,9 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
      * @return
      */
     @Override
-    public <Entity> List<Entity> pagination(Pagination pager, Entity example) {
-        return null;
+    public <Entity> List<Entity> pagination(Pagination pager, Entity entity) throws Exception {
+        QueryParam queryParam = new QueryParam(CrudMethod.GETS,entity);
+        return (List<Entity>) crudRouter.route(queryParam);
     }
 
     @Override

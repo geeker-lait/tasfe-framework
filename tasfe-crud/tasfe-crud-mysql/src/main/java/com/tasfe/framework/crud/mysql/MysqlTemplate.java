@@ -5,6 +5,7 @@ import com.tasfe.framework.crud.api.StoragerType;
 import com.tasfe.framework.crud.api.dto.QueryParam;
 import com.tasfe.framework.crud.core.CrudTemplate;
 import com.tasfe.framework.crud.api.operator.mysql.MysqlOperator;
+import com.tasfe.framework.crud.mysql.utils.FieldReflectUtil;
 import com.tasfe.framework.crud.mysql.utils.GeneralMapperReflectUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +43,10 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
         param.put("tableName", tableName);
         param.put("columnValueMapping", mapping);
         sqlSession.update(Crudable.IN, param);
+        Field field = FieldReflectUtil.findField(t.getClass(),"id");
+        if(null != field){
+            FieldReflectUtil.setFieldValue(t,field,Long.valueOf(param.get("id").toString()));
+        }
     }
 
     @Override
@@ -70,6 +76,7 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
         param.put("dataList", dataList);
 
         sqlSession.update(Crudable.INS, param);
+
     }
 
 
@@ -100,12 +107,10 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
         param.put("queryColumn", null == queryParam.getQueryColumn()?GeneralMapperReflectUtil.getAllColumns(clazz,false):queryParam.getQueryColumn());
         Object entity = queryParam.getEntity();
         if(entity!=null){
-
-
+            param.put("conditionParam", null == queryParam.getConditionParam()?GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity,false):queryParam.getConditionParam());
         }
 
         param.put("conditionExp", queryParam.getConditionExp());
-        param.put("conditionParam", queryParam.getConditionParam());
         param.put("orderExp", queryParam.getOrderExp());
         param.put("pks", queryParam.getPks());
         //param.put("",);

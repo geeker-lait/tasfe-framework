@@ -12,7 +12,7 @@ import javax.persistence.Table;
  */
 @Alias("Member")
 @Table(name = "t_member")
-@Storager
+//@Storager
 public class Member {
     @Id
     private Long id;

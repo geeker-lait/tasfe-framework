@@ -68,13 +68,13 @@ public class CrudTest {
     @Test
     public void testInsert() throws Exception {
 
-        crudTemplate.insert(getUser());
-
-        crudTemplate.insertBatch(getUsers(10));
+//        crudTemplate.insert(getUser());
+//
+//        crudTemplate.insertBatch(getUsers(10));
 
         Member member = new Member();
         member.setEmail("lait");
-        member.setUserId(1L);
+        member.setUserId(11L);
         member.setDeptId(1);
         member.setOrderId(111);
         crudTemplate.insert(member);
