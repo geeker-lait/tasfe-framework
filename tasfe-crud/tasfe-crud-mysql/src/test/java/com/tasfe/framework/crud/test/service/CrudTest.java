@@ -146,22 +146,6 @@ public class CrudTest {
         User u = getUser();
         userBusiness.findUsers();
     }*/
-
-
-
-    @Test
-    public void testTemplateInsert() throws Exception {
-        User u = getUser();
-        crudTemplate.insert(u);
-    }
-
-    @Test
-    public void testOperationInsert() throws Exception {
-        User u = getUser();
-        crudTemplate.insert(u);
-    }
-
-
     @Test
     public void testOperationInsertBatch() throws Exception {
         List<User> userList = getUsers(10);
@@ -172,10 +156,6 @@ public class CrudTest {
         }
     }
 
-
-
-    
-    
     @Test
     public void testOperationFind() throws Exception {
         List<User> userList = getUsers(10);
@@ -184,6 +164,22 @@ public class CrudTest {
         for(User user:userList){
             System.out.println(user.getUserId() + "::::" + user.getDeptId());
         }
+    }
+
+    @Test
+    public void testUpdate() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("forest_liang");
+        crudTemplate.update(user);
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("forest_liang");
+        crudTemplate.del(user);
     }
     
 

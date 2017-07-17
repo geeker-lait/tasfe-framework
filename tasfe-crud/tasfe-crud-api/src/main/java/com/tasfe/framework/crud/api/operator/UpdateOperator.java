@@ -12,7 +12,7 @@ public interface UpdateOperator {
      *
      * @param entity
      */
-    <Entity> void update(Entity entity);
+    <Entity> void update(Entity entity) throws Exception;
 
 
     /**

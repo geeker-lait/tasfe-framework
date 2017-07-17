@@ -143,6 +143,17 @@ public interface Crudable {
      * </p>
      *
      * @param <T>          pojo类
+     * @param queryParam        pojo类-class对象
+     * @return 数据条数
+     */
+    <T> void _del(QueryParam queryParam) throws Exception;
+    /**
+     * 删除
+     * <p>
+     * 根据主键删除
+     * </p>
+     *
+     * @param <T>          pojo类
      * @param clazz        pojo类-class对象
      * @param pk 主键值
      * @return 数据条数

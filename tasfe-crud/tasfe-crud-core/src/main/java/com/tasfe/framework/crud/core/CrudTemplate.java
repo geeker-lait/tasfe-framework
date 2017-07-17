@@ -126,8 +126,9 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
 
     }
     @Override
-    public <T> void del(T records) {
-
+    public <T> void del(T entity) throws Exception {
+        QueryParam queryParam = new QueryParam(CrudMethod.DEL,entity);
+        crudRouter.route(queryParam);
     }
 
 
@@ -137,8 +138,9 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
      * @param <Entity>
      */
     @Override
-    public <Entity> void update(Entity entity) {
-
+    public <Entity> void update(Entity entity) throws Exception {
+        QueryParam queryParam = new QueryParam(CrudMethod.UPD,entity);
+        crudRouter.route(queryParam);
     }
     @Override
     public <Entity> void updates(List<Entity> entities) {
