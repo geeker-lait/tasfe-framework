@@ -68,10 +68,10 @@ public class CrudTest {
 
     @Test
     public void testInsert() throws Exception {
+        User user = getUser();
+        crudTemplate.insert(user);
 
-//        crudTemplate.insert(getUser());
-//
-//        crudTemplate.insertBatch(getUsers(10));
+        crudTemplate.insertBatch(getUsers(10));
 
         Member member = new Member();
         member.setEmail("lait");
@@ -83,7 +83,7 @@ public class CrudTest {
         // 自定义填充方式
         //User user1 = mysqlTemplate.forParam(user).exec("doXX").fill(User.class);
 
-        //System.out.println("=========" + user);
+        System.out.println("=========" + user);
     }
 
 
