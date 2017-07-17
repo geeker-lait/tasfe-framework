@@ -133,6 +133,25 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
     }
 
     @Override
+    public <T> Long _count(Class<T> clazz, QueryParam queryParam) throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        String tableName = GeneralMapperReflectUtil.getTableName(clazz);
+
+        param.put("tableName", tableName);
+        param.put("queryColumn", null == queryParam.getQueryColumn()?GeneralMapperReflectUtil.getAllColumns(clazz,false):queryParam.getQueryColumn());
+        Object entity = queryParam.getEntity();
+        if(entity!=null){
+            param.put("conditionParam", null == queryParam.getConditionParam()?GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity,false):queryParam.getConditionParam());
+        }
+
+        param.put("conditionExp", queryParam.getConditionExp());
+        param.put("pks", queryParam.getPks());
+
+        Long totalSize = sqlSession.selectOne(Crudable.COUNT,param);
+        return totalSize;
+    }
+
+    @Override
     public <T> List<T> _find(Class<T> clazz, QueryParam queryParam) throws Exception {
         List<T> result = new ArrayList<>();
 

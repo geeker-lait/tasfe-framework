@@ -149,19 +149,26 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
     /**
      * 分页数据
      * @param pager
-     * @param example 查询条件参数
      * @param <Entity>
      * @return
      */
     @Override
-    public <Entity> List<Entity> pagination(Pagination pager, Entity entity) throws Exception {
+    public <Entity> Pagination<Entity> pagination(Pagination pager, Entity entity) throws Exception {
+        //查询总数
+        pager.setTotalSize(counts(entity));
+        //获取分页数据
         QueryParam queryParam = new QueryParam(CrudMethod.GETS,entity);
-        return (List<Entity>) crudRouter.route(queryParam);
+        queryParam.setPageNo(pager.getCurPage());
+        queryParam.setPageSize(pager.getPageSize());
+        Object list = crudRouter.route(queryParam);
+        pager.setResult((List<Entity>)list);
+        return pager;
     }
 
     @Override
-    public <Entity> Long counts(Entity entity) {
-        return null;
+    public <Entity> Long counts(Entity entity) throws Exception {
+        QueryParam queryParam = new QueryParam(CrudMethod.COUNT,entity);
+        return (Long) crudRouter.route(queryParam);
     }
 
 

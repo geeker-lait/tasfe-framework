@@ -28,6 +28,10 @@ public interface Crudable {
      */
     String GETS = "_gets";
     /**
+     * 查询条数
+     */
+    String COUNT = "_count";
+    /**
      * 获取一条或多条,like条件查询
      */
     String FIND = "_find";
@@ -100,6 +104,16 @@ public interface Crudable {
      * @throws Exception
      */
     <T> List<T> _gets(Class<T> clazz, QueryParam queryParam) throws Exception;
+
+    /**
+     * 高级查询
+     *
+     * @param clazz      pojo类-class对象
+     * @param queryParam 查询参数
+     * @return
+     * @throws Exception
+     */
+    <T> Long _count(Class<T> clazz, QueryParam queryParam) throws Exception;
 
     /**
      * 高级查询
