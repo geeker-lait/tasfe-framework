@@ -1,5 +1,6 @@
 package com.tasfe.framework.crud.test.service;
 
+import com.tasfe.framework.crud.api.dto.Pagination;
 import com.tasfe.framework.crud.core.CrudTemplate;
 import com.tasfe.framework.crud.test.model.entity.Member;
 import com.tasfe.framework.crud.test.model.entity.User;
@@ -67,10 +68,10 @@ public class CrudTest {
 
     @Test
     public void testInsert() throws Exception {
+        User user = getUser();
+        crudTemplate.insert(user);
 
-//        crudTemplate.insert(getUser());
-//
-//        crudTemplate.insertBatch(getUsers(10));
+        crudTemplate.insertBatch(getUsers(10));
 
         Member member = new Member();
         member.setEmail("lait");
@@ -78,11 +79,11 @@ public class CrudTest {
         member.setDeptId(1);
         member.setOrderId(111);
         crudTemplate.insert(member);
-
+        System.out.println("=========" + member);
         // 自定义填充方式
         //User user1 = mysqlTemplate.forParam(user).exec("doXX").fill(User.class);
 
-        //System.out.println("=========" + user);
+        System.out.println("=========" + user);
     }
 
 
@@ -90,17 +91,19 @@ public class CrudTest {
     @Test
     public void testGet() throws Exception {
         User user = new User();
-        user.setId(25L);
-        user = userMapper.getUser(user);
+//        user.setId(25L);
+//        user = userMapper.getUser(user);
+//        System.out.println("------------------------------"+ user);
+//
+//
+//        user = crudTemplate.get(User.class,25L);
 
+        List<User> users = crudTemplate.gets(User.class,51L,52L,53L);
+        System.out.println( "user====="+ users.size());
 
-        user = crudTemplate.get(User.class,25L);
-
-        List<User> users = crudTemplate.gets(User.class,1L,2L,3L);
-        System.out.println(user +"====="+ users);
-
+        user.setEmail("gmail");
         users = crudTemplate.gets(user);
-        System.out.println(user +"====="+ users.size());
+        System.out.println("user====="+ users.size());
 
 
 
@@ -114,6 +117,17 @@ public class CrudTest {
         //System.out.println(user11+ "--------------------------------" );
 
         //System.out.println(user +"====="+ users);
+    }
+
+    @Test
+    public void testPagination() throws Exception {
+        User user = new User();
+//        user.setEmail("gmail");
+        Pagination pager = new Pagination(2,2,null,null,null);
+        Pagination userspager = crudTemplate.pagination(pager, user);
+        System.out.println("user====="+ userspager);
+        Long size = crudTemplate.counts(user);
+        System.out.println("total====="+size);
     }
 
 
@@ -132,22 +146,6 @@ public class CrudTest {
         User u = getUser();
         userBusiness.findUsers();
     }*/
-
-
-
-    @Test
-    public void testTemplateInsert() throws Exception {
-        User u = getUser();
-        crudTemplate.insert(u);
-    }
-
-    @Test
-    public void testOperationInsert() throws Exception {
-        User u = getUser();
-        crudTemplate.insert(u);
-    }
-
-
     @Test
     public void testOperationInsertBatch() throws Exception {
         List<User> userList = getUsers(10);
@@ -158,10 +156,6 @@ public class CrudTest {
         }
     }
 
-
-
-    
-    
     @Test
     public void testOperationFind() throws Exception {
         List<User> userList = getUsers(10);
@@ -170,6 +164,22 @@ public class CrudTest {
         for(User user:userList){
             System.out.println(user.getUserId() + "::::" + user.getDeptId());
         }
+    }
+
+    @Test
+    public void testUpdate() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("forest_liang");
+        crudTemplate.update(user);
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("forest_liang");
+        crudTemplate.del(user);
     }
     
 

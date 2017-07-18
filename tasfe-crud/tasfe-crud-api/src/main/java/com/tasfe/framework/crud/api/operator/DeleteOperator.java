@@ -25,6 +25,8 @@ public interface DeleteOperator {
      * @param records
      * @return
      */
-    <T> void del(T records);
+    <T> void del(T records) throws Exception;
+
+
 }
 

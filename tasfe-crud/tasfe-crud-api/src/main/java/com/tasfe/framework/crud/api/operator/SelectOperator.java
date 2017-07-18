@@ -47,5 +47,5 @@ public interface SelectOperator{
      * @param entity 查询条件参数
      * @return 总记录数
      */
-    <Entity> Long counts(Entity entity);
+    <Entity> Long counts(Entity entity) throws Exception;
 }

@@ -28,6 +28,10 @@ public interface Crudable {
      */
     String GETS = "_gets";
     /**
+     * 查询条数
+     */
+    String COUNT = "_count";
+    /**
      * 获取一条或多条,like条件查询
      */
     String FIND = "_find";
@@ -109,6 +113,16 @@ public interface Crudable {
      * @return
      * @throws Exception
      */
+    <T> Long _count(Class<T> clazz, QueryParam queryParam) throws Exception;
+
+    /**
+     * 高级查询
+     *
+     * @param clazz      pojo类-class对象
+     * @param queryParam 查询参数
+     * @return
+     * @throws Exception
+     */
     <T> List<T> _find(Class<T> clazz, QueryParam queryParam) throws Exception;
 
     /**
@@ -122,6 +136,17 @@ public interface Crudable {
     <T> List<Map<String, Object>> _query(Class<T> clazz, QueryParam queryParam) throws Exception;
 
     /*********************************** delete ***********************************/
+    /**
+     * 删除
+     * <p>
+     * 根据主键删除
+     * </p>
+     *
+     * @param <T>          pojo类
+     * @param queryParam        pojo类-class对象
+     * @return 数据条数
+     */
+    <T> void _del(QueryParam queryParam) throws Exception;
     /**
      * 删除
      * <p>

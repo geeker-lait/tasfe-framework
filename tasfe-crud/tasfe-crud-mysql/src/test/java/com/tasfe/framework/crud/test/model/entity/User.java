@@ -15,7 +15,7 @@ import com.tasfe.framework.crud.mysql.type.DataState;
  */
 @Alias("User")
 @Table(name = "t_user")
-@Storager(storage={StoragerType.MYSQL,StoragerType.HBASE})
+@Storager(storage={StoragerType.MYSQL,StoragerType.ES})
 public class User{
     @Id
     private Long id;
