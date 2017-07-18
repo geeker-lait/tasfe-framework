@@ -1,0 +1,6 @@
+2017-07-18 10:45:15.264 [main] DEBUG com.apache.ibatis.TasfeCrud._in - ==>  Preparing: insert into t_user ( userId , deptId , mobilePhone , email , orderId ) values ( ? , ? , ? , ? , ? ) 
+2017-07-18 10:45:15.287 [main] DEBUG com.apache.ibatis.TasfeCrud._in - ==> Parameters: 1258368714(String), 1(String), 15801818092(String), lait.zhang@gmail.com(String), -839680675(String)
+2017-07-18 10:45:15.343 [main] DEBUG com.apache.ibatis.TasfeCrud._in - <==    Updates: 1
+2017-07-18 10:45:30.411 [main] DEBUG com.apache.ibatis.TasfeCrud._in - ==>  Preparing: insert into t_user ( userId , deptId , mobilePhone , email , orderId ) values ( ? , ? , ? , ? , ? ) 
+2017-07-18 10:45:30.432 [main] DEBUG com.apache.ibatis.TasfeCrud._in - ==> Parameters: -1733855226(String), 1(String), 15801818092(String), lait.zhang@gmail.com(String), 1591463977(String)
+2017-07-18 10:45:30.468 [main] DEBUG com.apache.ibatis.TasfeCrud._in - <==    Updates: 1

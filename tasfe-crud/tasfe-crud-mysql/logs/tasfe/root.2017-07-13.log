@@ -1,0 +1,21 @@
+2017-07-13 20:20:07.958 [main] DEBUG c.a.i.c.t.f.crud.test.mysql.dao.UserMapper.getUser - ==>  Preparing: select * from t_user WHERE id=? 
+2017-07-13 20:20:08.006 [main] DEBUG c.a.i.c.t.f.crud.test.mysql.dao.UserMapper.getUser - ==> Parameters: 25(Long)
+2017-07-13 20:20:08.038 [main] DEBUG c.a.i.c.t.f.crud.test.mysql.dao.UserMapper.getUser - <==      Total: 1
+2017-07-13 20:20:08.082 [main] DEBUG c.a.i.c.t.framework.crud.mysql.dao.RdbCrudDao._get - ==>  Preparing: select id , userId , deptId , userName , password , mobilePhone , officePhone , email , job , orderId , status from t_user where id = ? 
+2017-07-13 20:20:08.084 [main] DEBUG c.a.i.c.t.framework.crud.mysql.dao.RdbCrudDao._get - ==> Parameters: 25(Long)
+2017-07-13 20:20:08.085 [main] DEBUG c.a.i.c.t.framework.crud.mysql.dao.RdbCrudDao._get - <==      Total: 1
+2017-07-13 20:20:08.124 [main] DEBUG c.a.i.c.t.f.crud.mysql.dao.RdbCrudDao._gets - ==>  Preparing: select id , userId , deptId , userName , password , mobilePhone , officePhone , email , job , orderId , status from t_user WHERE id=1 or id=2 or id=3 
+2017-07-13 20:20:08.125 [main] DEBUG c.a.i.c.t.f.crud.mysql.dao.RdbCrudDao._gets - ==> Parameters: 
+2017-07-13 20:20:08.126 [main] DEBUG c.a.i.c.t.f.crud.mysql.dao.RdbCrudDao._gets - <==      Total: 0
+2017-07-13 20:20:08.127 [main] DEBUG c.a.i.c.t.f.crud.mysql.dao.RdbCrudDao._gets - ==>  Preparing: select id , userId , deptId , userName , password , mobilePhone , officePhone , email , job , orderId , status from t_user 
+2017-07-13 20:20:08.128 [main] DEBUG c.a.i.c.t.f.crud.mysql.dao.RdbCrudDao._gets - ==> Parameters: 
+2017-07-13 20:20:08.134 [main] DEBUG c.a.i.c.t.f.crud.mysql.dao.RdbCrudDao._gets - <==      Total: 34
+2017-07-13 20:20:29.091 [main] DEBUG c.a.i.c.t.f.crud.test.mysql.dao.UserMapper.getUser - ==>  Preparing: select * from t_user WHERE id=? 
+2017-07-13 20:20:29.115 [main] DEBUG c.a.i.c.t.f.crud.test.mysql.dao.UserMapper.getUser - ==> Parameters: 25(Long)
+2017-07-13 20:20:29.135 [main] DEBUG c.a.i.c.t.f.crud.test.mysql.dao.UserMapper.getUser - <==      Total: 1
+2017-07-13 20:21:27.078 [main] DEBUG c.a.i.c.t.framework.crud.mysql.dao.RdbCrudDao._in - ==>  Preparing: insert into t_member ( userId , deptId , email , orderId ) values ( ? , ? , ? , ? ) 
+2017-07-13 20:21:27.103 [main] DEBUG c.a.i.c.t.framework.crud.mysql.dao.RdbCrudDao._in - ==> Parameters: 1(String), 1(String), lait(String), 111(String)
+2017-07-13 20:21:27.199 [main] DEBUG c.a.i.c.t.framework.crud.mysql.dao.RdbCrudDao._in - <==    Updates: 1
+2017-07-13 20:21:56.628 [main] DEBUG c.a.i.c.t.framework.crud.mysql.dao.RdbCrudDao._in - ==>  Preparing: insert into t_member ( userId , deptId , email , orderId ) values ( ? , ? , ? , ? ) 
+2017-07-13 20:21:56.650 [main] DEBUG c.a.i.c.t.framework.crud.mysql.dao.RdbCrudDao._in - ==> Parameters: 11(String), 1(String), lait(String), 111(String)
+2017-07-13 20:21:56.708 [main] DEBUG c.a.i.c.t.framework.crud.mysql.dao.RdbCrudDao._in - <==    Updates: 1
