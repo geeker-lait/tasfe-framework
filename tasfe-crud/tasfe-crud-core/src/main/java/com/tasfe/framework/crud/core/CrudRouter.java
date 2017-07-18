@@ -11,6 +11,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
+
+
 /**
  * Created by Lait on 2017/5/29.
  */
@@ -53,17 +56,19 @@ public class CrudRouter implements ApplicationContextAware {
                         return crudable._get(clazz,queryParam.getPk());
                     case GETS:
                         return crudable._gets(clazz,queryParam);
+                    case COUNT:
+                        return crudable._count(clazz,queryParam);
                     case LIST:
                         break;
                     case FIND:
                         break;
                     case UPD:
-                        //crudable.upd(t);
-                        break;
+                        return crudable._upd(queryParam.getEntity());
                     case UPDS:
                         //crudable.upds(tlist);
                         break;
                     case DEL:
+                        crudable._del(queryParam);
                         break;
                     case DELS:
                         break;

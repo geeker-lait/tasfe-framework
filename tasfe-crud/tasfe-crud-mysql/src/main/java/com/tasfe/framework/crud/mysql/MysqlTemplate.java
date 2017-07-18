@@ -1,5 +1,6 @@
 package com.tasfe.framework.crud.mysql;
 
+import com.tasfe.framework.crud.api.CrudMethod;
 import com.tasfe.framework.crud.api.Crudable;
 import com.tasfe.framework.crud.api.StoragerType;
 import com.tasfe.framework.crud.api.dto.QueryParam;
@@ -133,6 +134,25 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
     }
 
     @Override
+    public <T> Long _count(Class<T> clazz, QueryParam queryParam) throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        String tableName = GeneralMapperReflectUtil.getTableName(clazz);
+
+        param.put("tableName", tableName);
+        param.put("queryColumn", null == queryParam.getQueryColumn()?GeneralMapperReflectUtil.getAllColumns(clazz,false):queryParam.getQueryColumn());
+        Object entity = queryParam.getEntity();
+        if(entity!=null){
+            param.put("conditionParam", null == queryParam.getConditionParam()?GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity,false):queryParam.getConditionParam());
+        }
+
+        param.put("conditionExp", queryParam.getConditionExp());
+        param.put("pks", queryParam.getPks());
+
+        Long totalSize = sqlSession.selectOne(Crudable.COUNT,param);
+        return totalSize;
+    }
+
+    @Override
     public <T> List<T> _find(Class<T> clazz, QueryParam queryParam) throws Exception {
         List<T> result = new ArrayList<>();
 
@@ -154,6 +174,24 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
     }
 
     @Override
+    public <T> void _del(QueryParam queryParam) throws Exception {
+        Map<String, Object> param = new HashMap<String, Object>();
+        Class _class = queryParam.getEntity().getClass();
+        String tableName = GeneralMapperReflectUtil.getTableName(_class);
+        String primaryKey = GeneralMapperReflectUtil.getPrimaryKey(_class);
+
+        param.put("tableName", tableName);
+        param.put("primaryKey", primaryKey);
+        Field field = FieldReflectUtil.findField(_class,"id");
+        Long pk = -1L;
+        if(null != field){
+            pk = (Long) FieldReflectUtil.getFieldValue(queryParam.getEntity(),field);
+        }
+        param.put("primaryValue", queryParam.getPk()==null?pk:queryParam.getPk());
+        sqlSession.delete(Crudable.DEL,param);
+    }
+
+    @Override
     public <T> void _del(Class<T> clazz, Long pk) {
         Map<String, Object> param = new HashMap<String, Object>();
 
@@ -163,7 +201,6 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
         param.put("tableName", tableName);
         param.put("primaryKey", primaryKey);
         param.put("primaryValue", pk);
-
     }
 
     @Override
@@ -188,7 +225,7 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
         String tableName = GeneralMapperReflectUtil.getTableName(clazz);
         String primaryKey = GeneralMapperReflectUtil.getPrimaryKey(clazz);
 
-        Map<String, String> mapping = GeneralMapperReflectUtil.getAllFieldValueMapping(t);
+        Map<String, String> mapping = GeneralMapperReflectUtil.getFieldValueMappingExceptNull(t,false);
 
         String primaryValue = mapping.get(primaryKey);
 
@@ -198,7 +235,8 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
         param.put("primaryKey", primaryKey);
         param.put("primaryValue", primaryValue);
         param.put("columnValueMapping", mapping);
-        return 0;
+
+        return sqlSession.update(Crudable.UPD,param);
     }
 
     @Override
