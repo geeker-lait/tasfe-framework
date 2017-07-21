@@ -29,9 +29,6 @@ public class CrudTest {
     //@Autowired
     //UserBusiness userBusiness;
 
-    @Resource(name="mysql")
-    CrudTemplate crudTemplate;
-
     //@Resource(name="mysqlTemplate")
     //CrudOperator<User> mysqlOperator;
 
@@ -44,6 +41,8 @@ public class CrudTest {
     @Autowired
     UserMapper userMapper;
 
+    @Resource(name="mysql")
+    CrudTemplate crudTemplate;
 
     private User getUser(){
         User u = new User();

@@ -78,14 +78,6 @@ public class User{
         this.userName = userName;
     }
 
-    /*public String getLoginName() {
-        return loginName;
-    }
-
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }*/
-
     public String getPassword() {
         return password;
     }
