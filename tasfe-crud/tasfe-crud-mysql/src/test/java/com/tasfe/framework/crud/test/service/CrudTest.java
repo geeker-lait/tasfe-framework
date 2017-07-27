@@ -68,8 +68,7 @@ public class CrudTest {
     public void testInsert() throws Exception {
 
 //        crudTemplate.insert(getUser());
-//
-//        crudTemplate.insertBatch(getUsers(10));
+        //crudTemplate.insertBatch(getUsers(10));
 
         Member member = new Member();
         member.setEmail("lait");
@@ -89,17 +88,20 @@ public class CrudTest {
     @Test
     public void testGet() throws Exception {
         User user = new User();
-        user.setId(25L);
-        user = userMapper.getUser(user);
+        user.setId(95L);
+        //user = userMapper.getUser(user);
 
 
-        user = crudTemplate.get(User.class,25L);
+       // user = crudTemplate.get(User.class,25L);
 
-        List<User> users = crudTemplate.gets(User.class,1L,2L,3L);
+        List<Long> ids = new ArrayList<>();
+        ids.add(96L);
+        ids.add(98L);
+        List<User> users = crudTemplate.gets(User.class,96L,98L);
         System.out.println(user +"====="+ users);
 
-        users = crudTemplate.gets(user);
-        System.out.println(user +"====="+ users.size());
+        /*users = crudTemplate.gets(user);
+        System.out.println(user +"====="+ users.size());*/
 
 
 

@@ -7,6 +7,7 @@
     <settings>
         <!--显示sql日志-->
         <setting name="logPrefix" value="com.apache.ibatis."/>
+
         <setting name="cacheEnabled" value="true"/>
         <!-- 延迟加载的全局开关。默认值：false -->
         <setting name="lazyLoadingEnabled" value="true"/>
@@ -22,7 +23,7 @@
         <setting name="safeRowBoundsEnabled" value="false"/>
         <!-- 通常数据库列使用大写单词命名，单词间用下划线分隔；而java属性一般遵循驼峰命名法。 -->
         <!-- 为了在这两种命名方式之间启用自动映射，需要将 mapUnderscoreToCamelCase设置为true。默认为false -->
-        <!--<setting name="mapUnderscoreToCamelCase" value="true"/>-->
+        <setting name="mapUnderscoreToCamelCase" value="false"/>
         <!-- MyBatis 利用本地缓存机制（Local Cache）防止循环引用（circular references）和加速重复嵌套查询。 -->
         <!-- 默认值为 SESSION，这种情况下会缓存一个会话中执行的所有查询。 -->
         <!-- 若设置值为 STATEMENT，本地会话仅用在语句执行上，对相同 SqlSession 的不同调用将不会共享数据。 -->
