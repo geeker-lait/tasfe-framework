@@ -27,10 +27,7 @@ public interface Crudable {
      * 获取一条或多条,equals条件查询
      */
     String GETS = "_gets";
-    /**
-     * 查询条数
-     */
-    String COUNT = "_count";
+
     /**
      * 获取一条或多条,like条件查询
      */
@@ -61,6 +58,26 @@ public interface Crudable {
      * 单挑或多条删除，条件删除
      */
     String DELS = "_dels";
+
+    /**
+     * 条数
+     */
+    String COUNT = "_count";
+
+    /**
+     * 获取最大值
+     */
+    String MAX = "_max";
+
+    /**
+     * 获取最小值
+     */
+    String MIN = "_min";
+
+    /**
+     * 获取平均值
+     */
+    String AVG = "_avg";
 
     /**
      * 获取存储器的名字
@@ -105,15 +122,7 @@ public interface Crudable {
      */
     <T> List<T> _gets(Class<T> clazz, QueryParam queryParam) throws Exception;
 
-    /**
-     * 高级查询
-     *
-     * @param clazz      pojo类-class对象
-     * @param queryParam 查询参数
-     * @return
-     * @throws Exception
-     */
-    <T> Long _count(Class<T> clazz, QueryParam queryParam) throws Exception;
+
 
     /**
      * 高级查询
@@ -211,4 +220,58 @@ public interface Crudable {
      */
     <T> int _upds(Class<T> clazz, Map<String, Object> columnValueMapping, String conditionExp,
                                             Map<String, Object> conditionParam) throws Exception;
+
+
+    /**
+     * 高级查询
+     *
+     * @param clazz      pojo类-class对象
+     * @param queryParam 查询参数
+     * @return
+     * @throws Exception
+     */
+    <T> Long _count(Class<T> clazz, QueryParam queryParam) throws Exception;
+
+
+    /**
+     * 获取最大数
+     * @param queryParam
+     * @param <T>
+     * @return
+     * @throws Exception
+     */
+    <T> Number _max(QueryParam queryParam)throws Exception;
+
+
+
+    /**
+     * 获取最大数
+     * @param queryParam
+     * @param <T>
+     * @return
+     * @throws Exception
+     */
+    <T> Number _min(QueryParam queryParam)throws Exception;
+
+
+    /**
+     * 获取最大数
+     * @param queryParam
+     * @param <T>
+     * @return
+     * @throws Exception
+     */
+    <T> Number _avg(QueryParam queryParam)throws Exception;
+
+
+    /**
+     * 获取最大数
+     * @param queryParam
+     * @param <T>
+     * @return
+     * @throws Exception
+     */
+    <T> Number _sum(QueryParam queryParam)throws Exception;
+
+
 }

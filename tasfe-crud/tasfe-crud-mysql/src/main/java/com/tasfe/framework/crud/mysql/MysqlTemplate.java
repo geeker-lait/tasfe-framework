@@ -1,11 +1,10 @@
 package com.tasfe.framework.crud.mysql;
 
-import com.tasfe.framework.crud.api.CrudMethod;
 import com.tasfe.framework.crud.api.Crudable;
 import com.tasfe.framework.crud.api.StoragerType;
 import com.tasfe.framework.crud.api.dto.QueryParam;
 import com.tasfe.framework.crud.core.CrudTemplate;
-import com.tasfe.framework.crud.api.operator.mysql.MysqlOperator;
+import com.tasfe.framework.crud.api.operator.mysql.RdbOperator;
 import com.tasfe.framework.crud.mysql.utils.FieldReflectUtil;
 import com.tasfe.framework.crud.mysql.utils.GeneralMapperReflectUtil;
 import org.apache.commons.beanutils.BeanUtils;
@@ -28,7 +27,7 @@ import java.util.Map;
  * mysql实现
  */
 @Component("mysql")
-public class MysqlTemplate extends CrudTemplate implements MysqlOperator, InitializingBean {
+public class MysqlTemplate extends CrudTemplate implements RdbOperator, InitializingBean {
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
 
@@ -133,24 +132,6 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
         return ts;
     }
 
-    @Override
-    public <T> Long _count(Class<T> clazz, QueryParam queryParam) throws Exception {
-        Map<String, Object> param = new HashMap<>();
-        String tableName = GeneralMapperReflectUtil.getTableName(clazz);
-
-        param.put("tableName", tableName);
-        param.put("queryColumn", null == queryParam.getQueryColumn()?GeneralMapperReflectUtil.getAllColumns(clazz,false):queryParam.getQueryColumn());
-        Object entity = queryParam.getEntity();
-        if(entity!=null){
-            param.put("conditionParam", null == queryParam.getConditionParam()?GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity,false):queryParam.getConditionParam());
-        }
-
-        param.put("conditionExp", queryParam.getConditionExp());
-        param.put("pks", queryParam.getPks());
-
-        Long totalSize = sqlSession.selectOne(Crudable.COUNT,param);
-        return totalSize;
-    }
 
     @Override
     public <T> List<T> _find(Class<T> clazz, QueryParam queryParam) throws Exception {
@@ -251,6 +232,53 @@ public class MysqlTemplate extends CrudTemplate implements MysqlOperator, Initia
         param.put("conditionParam", conditionParam);
         return 0;
     }
+
+    @Override
+    public <T> Long _count(Class<T> clazz, QueryParam queryParam) throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        String tableName = GeneralMapperReflectUtil.getTableName(clazz);
+
+        param.put("tableName", tableName);
+        param.put("queryColumn", null == queryParam.getQueryColumn()?GeneralMapperReflectUtil.getAllColumns(clazz,false):queryParam.getQueryColumn());
+        Object entity = queryParam.getEntity();
+        if(entity!=null){
+            param.put("conditionParam", null == queryParam.getConditionParam()?GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity,false):queryParam.getConditionParam());
+        }
+
+        param.put("conditionExp", queryParam.getConditionExp());
+        param.put("pks", queryParam.getPks());
+
+        Long totalSize = sqlSession.selectOne(Crudable.COUNT,param);
+        return totalSize;
+    }
+
+    @Override
+    public <T> Number _max(QueryParam queryParam) throws Exception {
+        return null;
+    }
+
+    @Override
+    public <T> Number _min(QueryParam queryParam) throws Exception {
+        return null;
+    }
+
+    @Override
+    public <T> Number _avg(QueryParam queryParam) throws Exception {
+        return null;
+    }
+
+    @Override
+    public <T> Number _sum(QueryParam queryParam) throws Exception {
+        return null;
+    }
+
+
+
+
+
+
+
+
 
     public final void afterPropertiesSet() throws IllegalArgumentException, BeanInitializationException {
         try {
