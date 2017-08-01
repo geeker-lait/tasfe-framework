@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 
-import com.tasfe.framework.netty.servlet.impl.ConfigAdapter;
+import com.tasfe.framework.netty.servlet.impls.ConfigAdapter;
 import com.tasfe.framework.netty.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

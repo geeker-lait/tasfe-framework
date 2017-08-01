@@ -6,7 +6,7 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tasfe.framework.netty.servlet.impl.ServletContextImpl;
+import com.tasfe.framework.netty.servlet.impls.ServletContextImpl;
 import com.tasfe.framework.netty.utils.Utils;
 
 public class ServletContextListenerConfiguration {

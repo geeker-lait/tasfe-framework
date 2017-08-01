@@ -7,8 +7,8 @@ import com.tasfe.framework.netty.servlet.config.FilterConfiguration;
 import com.tasfe.framework.netty.servlet.config.ServletConfiguration;
 import com.tasfe.framework.netty.servlet.config.ServletContextListenerConfiguration;
 import com.tasfe.framework.netty.servlet.config.WebAppConfiguration;
-import com.tasfe.framework.netty.servlet.impl.FilterChainImpl;
-import com.tasfe.framework.netty.servlet.impl.ServletContextImpl;
+import com.tasfe.framework.netty.servlet.impls.FilterChainImpl;
+import com.tasfe.framework.netty.servlet.impls.ServletContextImpl;
 
 import io.netty.channel.group.ChannelGroup;
 

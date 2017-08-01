@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpSession;
 
-import com.tasfe.framework.netty.servlet.impl.HttpSessionImpl;
+import com.tasfe.framework.netty.servlet.impls.HttpSessionImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

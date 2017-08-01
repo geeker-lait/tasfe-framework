@@ -3,7 +3,7 @@ package com.tasfe.framework.netty.servlet.session;
 import javax.servlet.http.HttpSession;
 
 import com.tasfe.framework.netty.servlet.ServletWebApp;
-import com.tasfe.framework.netty.servlet.impl.HttpSessionImpl;
+import com.tasfe.framework.netty.servlet.impls.HttpSessionImpl;
 
 public class HttpSessionThreadLocal {
 

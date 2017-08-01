@@ -3,7 +3,7 @@ package com.tasfe.framework.netty.servlet.config;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-import com.tasfe.framework.netty.servlet.impl.ServletConfigImpl;
+import com.tasfe.framework.netty.servlet.impls.ServletConfigImpl;
 
 public class ServletConfiguration extends HttpComponentConfigurationAdapter<HttpServlet, ServletConfigImpl> {
 

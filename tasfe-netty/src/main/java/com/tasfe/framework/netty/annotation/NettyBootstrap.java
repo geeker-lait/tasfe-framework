@@ -17,9 +17,9 @@ import java.lang.annotation.Target;
 @Documented
 @Inherited
 public @interface NettyBootstrap {
-    public String springApplicationContext() default "classpath*:/tasfe-application.xml";
+    String springApplicationContext() default "classpath:/*-application.xml";
 
-    public String springServletContext() default "classpath*:/tasfe-servlet.xml";
+    String springServletContext() default "classpath:/*-web.xml";
 
-    public String serverProperties() default "configs/server.properties";
+    String serverProperties() default "server.properties";
 }

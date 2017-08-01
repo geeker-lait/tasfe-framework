@@ -34,9 +34,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tasfe.framework.netty.config.ServerConfig;
-import com.tasfe.framework.netty.servlet.impl.FilterChainImpl;
-import com.tasfe.framework.netty.servlet.impl.HttpServletRequestImpl;
-import com.tasfe.framework.netty.servlet.impl.HttpServletResponseImpl;
+import com.tasfe.framework.netty.servlet.impls.FilterChainImpl;
+import com.tasfe.framework.netty.servlet.impls.HttpServletRequestImpl;
+import com.tasfe.framework.netty.servlet.impls.HttpServletResponseImpl;
 import com.tasfe.framework.netty.servlet.interceptor.HttpServletInterceptor;
 import com.tasfe.framework.netty.utils.Utils;
 
@@ -213,8 +213,7 @@ public class HttpServletHandler extends SimpleChannelInboundHandler {
         }
 
         String uri = Utils.sanitizeUri(request.uri());
-        final String path = (uri != null
-                ? ServletWebApp.get().getStaticResourcesFolder().getAbsolutePath() + File.separator + uri : null);
+        final String path = (uri != null ? ServletWebApp.get().getStaticResourcesFolder().getAbsolutePath() + File.separator + uri : null);
 
         if (path == null) {
             sendError(ctx, FORBIDDEN);

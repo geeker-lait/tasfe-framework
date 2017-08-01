@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpSession;
 
-import com.tasfe.framework.netty.servlet.impl.HttpSessionImpl;
+import com.tasfe.framework.netty.servlet.impls.HttpSessionImpl;
 import com.tasfe.framework.netty.servlet.session.HttpSessionStore;
 import com.tasfe.framework.netty.servlet.session.HttpSessionThreadLocal;
 import com.tasfe.framework.netty.utils.Utils;

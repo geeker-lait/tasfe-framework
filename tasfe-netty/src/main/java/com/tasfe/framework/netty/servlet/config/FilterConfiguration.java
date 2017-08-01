@@ -3,7 +3,7 @@ package com.tasfe.framework.netty.servlet.config;
 import javax.servlet.Filter;
 import javax.servlet.ServletException;
 
-import com.tasfe.framework.netty.servlet.impl.FilterConfigImpl;
+import com.tasfe.framework.netty.servlet.impls.FilterConfigImpl;
 
 public class FilterConfiguration extends HttpComponentConfigurationAdapter<Filter, FilterConfigImpl> {
 
