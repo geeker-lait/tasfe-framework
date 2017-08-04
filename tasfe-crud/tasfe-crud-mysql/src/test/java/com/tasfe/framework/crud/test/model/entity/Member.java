@@ -1,5 +1,6 @@
 package com.tasfe.framework.crud.test.model.entity;
 
+import com.tasfe.framework.crud.api.annotation.Sharding;
 import com.tasfe.framework.crud.api.annotation.Storager;
 import com.tasfe.framework.crud.mysql.type.DataState;
 import org.apache.ibatis.type.Alias;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
  */
 @Alias("Member")
 @Table(name = "t_member")
+@Sharding(key="id")
 //@Storager
 public class Member {
     @Id

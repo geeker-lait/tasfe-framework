@@ -1,4 +1,4 @@
-package com.tasfe.framework.crud.mysql.utils;
+package com.tasfe.framework.crud.core.utils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -38,6 +38,24 @@ public class FieldReflectUtil {
      * @throws Exception IllegalArgumentException, IllegalAccessException
      */
     public static <T> Object getFieldValue(T t, Field field) throws Exception {
+        ReflectionUtils.makeAccessible(field);
+        if (field.get(t) != null) {
+            return field.get(t);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 根据field的名字获取指定字段的值
+     * @param t
+     * @param fieldName
+     * @param <T>
+     * @return
+     * @throws Exception
+     */
+    public static <T> Object getFieldValue(T t, String fieldName) throws Exception {
+        Field field = findField(t.getClass(),fieldName);
         ReflectionUtils.makeAccessible(field);
         if (field.get(t) != null) {
             return field.get(t);

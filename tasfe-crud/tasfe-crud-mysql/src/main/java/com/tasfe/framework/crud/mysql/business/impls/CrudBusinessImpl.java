@@ -190,7 +190,7 @@ public class CrudBusinessImpl/* implements CrudBusiness*/ {
 //    }
 //
 //    @Override
-//    public <T> List<T> selectAdvanced(Class<T> clazz, QueryParam queryParam) throws Exception {
+//    public <T> List<T> selectAdvanced(Class<T> clazz, CrudParam queryParam) throws Exception {
 //        List<T> result = new ArrayList<>();
 //
 //        queryParam.setQueryColumn(GeneralMapperReflectUtil.getAllColumns(clazz));
@@ -206,7 +206,7 @@ public class CrudBusinessImpl/* implements CrudBusiness*/ {
 //    }
 //
 //    @Override
-//    public <T> List<Map<String, Object>> selectAdvancedByColumn(Class<T> clazz, QueryParam queryParam)
+//    public <T> List<Map<String, Object>> selectAdvancedByColumn(Class<T> clazz, CrudParam queryParam)
 //            throws Exception {
 //        Map<String, Object> param = new HashMap<String, Object>();
 //

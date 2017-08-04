@@ -1,4 +1,4 @@
-package com.tasfe.framework.crud.mysql.utils;
+package com.tasfe.framework.crud.core.utils;
 
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;

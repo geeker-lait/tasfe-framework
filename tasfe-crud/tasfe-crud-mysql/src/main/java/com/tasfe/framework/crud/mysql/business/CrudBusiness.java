@@ -1,6 +1,6 @@
 package com.tasfe.framework.crud.mysql.business;
 
-import com.tasfe.framework.crud.api.dto.QueryParam;
+import com.tasfe.framework.crud.api.dto.CrudParam;
 
 import java.util.List;
 import java.util.Map;
@@ -68,8 +68,8 @@ public interface CrudBusiness {
      *
      * @param <T>            pojo类
      * @param clazz          pojo类-class对象
-     * @param conditionExp   查询条件 where 表达式 @see QueryParam
-     * @param conditionParam 查询条件 where 表达式中的参数集 @see QueryParam
+     * @param conditionExp   查询条件 where 表达式 @see CrudParam
+     * @param conditionParam 查询条件 where 表达式中的参数集 @see CrudParam
      * @return 数据条数
      */
     <T> int deleteByCondition(Class<T> clazz, String conditionExp, Map<String, Object> conditionParam);
@@ -117,8 +117,8 @@ public interface CrudBusiness {
      *
      * @param clazz              pojo类-class对象
      * @param columnValueMapping 需要更新的列名-值,注意列名必须与数据库中列名一致
-     * @param conditionExp       查询条件 where 表达式 @see QueryParam
-     * @param conditionParam     查询条件 where 表达式中的参数集 @see QueryParam
+     * @param conditionExp       查询条件 where 表达式 @see CrudParam
+     * @param conditionParam     查询条件 where 表达式中的参数集 @see CrudParam
      * @return 数据条数
      * @throws Exception
      */
@@ -129,20 +129,20 @@ public interface CrudBusiness {
      * 高级查询
      *
      * @param clazz      pojo类-class对象
-     * @param queryParam 查询参数
+     * @param crudParam 查询参数
      * @return
      * @throws Exception
      */
-    <T> List<T> selectAdvanced(Class<T> clazz, QueryParam queryParam) throws Exception;
+    <T> List<T> selectAdvanced(Class<T> clazz, CrudParam crudParam) throws Exception;
 
     /**
      * 高级查询,指定返回列
      *
      * @param clazz      pojo类-class对象
-     * @param queryParam 查询参数
+     * @param crudParam 查询参数
      * @return
      * @throws Exception
      */
-    <T> List<Map<String, Object>> selectAdvancedByColumn(Class<T> clazz, QueryParam queryParam) throws Exception;
+    <T> List<Map<String, Object>> selectAdvancedByColumn(Class<T> clazz, CrudParam crudParam) throws Exception;
 
 }

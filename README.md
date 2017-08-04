@@ -139,14 +139,14 @@ public class CrudTest {
 ```
     /**
      * 路由数据
-     * @param queryParam
+     * @param crudParam
      * @return
      * @throws Exception
      * CrudMethod cm,Class<T> clazz,T entity,List<T> tlist,QueryParam param
      */
     @Route
-    public Object route(QueryParam queryParam) throws Exception {
-        Class<?> clazz = queryParam.getQueryClazz();
+    public Object route(QueryParam crudParam) throws Exception {
+        Class<?> clazz = crudParam.getQueryClazz();
         if(clazz !=null ){
             Storager storager = clazz.getAnnotation(Storager.class);
             Crudable crudable = null;
@@ -159,20 +159,20 @@ public class CrudTest {
 
             for (StoragerType storagerType : storagerTypes) {
                 crudable = (Crudable)applicationContext.getBean(storagerType.toString().toLowerCase());
-                CrudMethod cm = CrudMethod.get(queryParam.getCrudMethod());
+                CrudMethod cm = CrudMethod.get(crudParam.getCrudMethod());
                 switch (cm) {
                     case IN:
-                        crudable._in(queryParam.getEntity());
+                        crudable._in(crudParam.getEntity());
                         break;
                     case INS:
-                        crudable._ins(queryParam.getEntityList());
+                        crudable._ins(crudParam.getEntityList());
                         break;
                     case GET:
-                        return crudable._get(clazz,queryParam.getPk());
+                        return crudable._get(clazz,crudParam.getPk());
                     case GETS:
-                        return crudable._gets(clazz,queryParam);
+                        return crudable._gets(clazz,crudParam);
                     case COUNT:
-                        return crudable._count(clazz,queryParam);
+                        return crudable._count(clazz,crudParam);
                     case LIST:
                         // 待完成
                         break;
@@ -180,12 +180,12 @@ public class CrudTest {
                         // 待完成
                         break;
                     case UPD:
-                        return crudable._upd(queryParam.getEntity());
+                        return crudable._upd(crudParam.getEntity());
                     case UPDS:
                         crudable.upds(tlist);
                         break;
                     case DEL:
-                        crudable._del(queryParam);
+                        crudable._del(crudParam);
                         break;
                     case DELS:
                         // 待完成

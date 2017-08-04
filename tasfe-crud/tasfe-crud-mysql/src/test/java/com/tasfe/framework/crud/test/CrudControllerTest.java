@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.tasfe.framework.crud.api.dto.QueryParam;
+import com.tasfe.framework.crud.api.dto.CrudParam;
 import com.tasfe.framework.crud.test.model.entity.User;
 import com.tasfe.framework.crud.mysql.type.DataState;
 import org.springframework.stereotype.Controller;
@@ -190,15 +190,15 @@ public class CrudControllerTest {
         conditionParam.put("user_name", "svili");
 
         String orderExp = "user_id";
-        QueryParam queryParam = new QueryParam();
+        CrudParam crudParam = new CrudParam();
 
-        queryParam.setConditionExp(conditionExp);
-        queryParam.setConditionParam(conditionParam);
-        queryParam.setOrderExp(orderExp);
-        queryParam.setPageSize(3);
-        queryParam.setPageNo(2);
+        crudParam.setConditionExp(conditionExp);
+        crudParam.setConditionParam(conditionParam);
+        crudParam.setOrderExp(orderExp);
+        crudParam.setPageSize(3);
+        crudParam.setPageNo(2);
 
-        //List<User> result = crudBusiness.selectAdvanced(User.class, queryParam);
+        //List<User> result = crudBusiness.selectAdvanced(User.class, crudParam);
 
         return null;
     }
