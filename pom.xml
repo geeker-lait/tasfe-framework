@@ -580,6 +580,14 @@
                 <version>2.3.23</version>
             </dependency>
 
+
+            <!-- ########################## 对象转换工具,比BeanUtil灵活 ##################################-->
+            <dependency>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer</artifactId>
+                <version>5.5.1</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
