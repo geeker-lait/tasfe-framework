@@ -1,6 +1,6 @@
 package com.tasfe.framework.crud.mysql.business;
 
-import com.tasfe.framework.crud.api.dto.CrudParam;
+import com.tasfe.framework.crud.api.params.CrudParam;
 
 import java.util.List;
 import java.util.Map;

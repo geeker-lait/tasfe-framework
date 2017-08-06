@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.tasfe.framework.crud.api.dto.CrudParam;
+import com.tasfe.framework.crud.api.params.CrudParam;
 import com.tasfe.framework.crud.test.model.entity.User;
 import com.tasfe.framework.crud.mysql.type.DataState;
 import org.springframework.stereotype.Controller;

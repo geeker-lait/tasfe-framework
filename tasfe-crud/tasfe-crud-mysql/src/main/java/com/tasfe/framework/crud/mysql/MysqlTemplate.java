@@ -1,8 +1,8 @@
 package com.tasfe.framework.crud.mysql;
 
 import com.tasfe.framework.crud.api.Crudable;
-import com.tasfe.framework.crud.api.StoragerType;
-import com.tasfe.framework.crud.api.dto.CrudParam;
+import com.tasfe.framework.crud.api.enums.StoragerType;
+import com.tasfe.framework.crud.api.params.CrudParam;
 import com.tasfe.framework.crud.core.CrudTemplate;
 import com.tasfe.framework.crud.api.operator.mysql.RdbOperator;
 import com.tasfe.framework.crud.core.utils.FieldReflectUtil;

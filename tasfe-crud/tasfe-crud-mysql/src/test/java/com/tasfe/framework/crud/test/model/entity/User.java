@@ -3,7 +3,7 @@ package com.tasfe.framework.crud.test.model.entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.tasfe.framework.crud.api.StoragerType;
+import com.tasfe.framework.crud.api.enums.StoragerType;
 import com.tasfe.framework.crud.api.annotation.Storager;
 import org.apache.ibatis.type.Alias;
 

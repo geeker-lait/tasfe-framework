@@ -1,4 +1,4 @@
-package com.tasfe.framework.crud.api;
+package com.tasfe.framework.crud.api.enums;
 
 /**
  * Created by Lait on 2017/7/10.

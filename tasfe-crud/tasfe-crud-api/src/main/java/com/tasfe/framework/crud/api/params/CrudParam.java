@@ -1,6 +1,7 @@
-package com.tasfe.framework.crud.api.dto;
+package com.tasfe.framework.crud.api.params;
 
-import com.tasfe.framework.crud.api.CrudMethod;
+import com.tasfe.framework.crud.api.enums.CrudMethod;
+import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
@@ -9,8 +10,17 @@ import java.util.Map;
  * Created by Lait on 2017/4/15
  * sql查询参数
  */
+@Data
 public class CrudParam {
+    /**
+     * 单主键
+     */
+    private Long pk;
 
+    /**
+     * 多主键
+     */
+    private Long[] pks;
 
     /**
      * 表对应的pojo类
@@ -28,6 +38,11 @@ public class CrudParam {
      * <p>传入的参数格式为:#{conditionParam.paramName}</p>
      */
     private String conditionExp;
+
+    /**
+     * 表达式
+     */
+    private List<Kvc> kvcs;
 
     /**
      * 查询条件 where 表达式中的参数集
@@ -61,24 +76,16 @@ public class CrudParam {
     private String crudMethod;
 
     /**
-     * 查询实体参数
+     * crud实体参数
      */
     private Object entity;
 
     /**
-     * 查询实体集合参数
+     * crud实体集合参数
      */
     private List<?> entityList;
 
-    /**
-     * 单主键
-     */
-    private Long pk;
 
-    /**
-     * 多主键
-     */
-    private Long[] pks;
 
 
     public CrudParam() {
@@ -118,7 +125,7 @@ public class CrudParam {
         return null;
     }
 
-    public void setQueryClazz(Class<?> queryClazz) {
+/*    public void setQueryClazz(Class<?> queryClazz) {
         this.queryClazz = queryClazz;
     }
 
@@ -208,5 +215,5 @@ public class CrudParam {
 
     public void setPks(Long[] pks) {
         this.pks = pks;
-    }
+    }*/
 }

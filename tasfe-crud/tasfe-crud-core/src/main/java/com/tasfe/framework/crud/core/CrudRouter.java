@@ -1,12 +1,12 @@
 package com.tasfe.framework.crud.core;
 
-import com.tasfe.framework.crud.api.CrudMethod;
+import com.tasfe.framework.crud.api.enums.CrudMethod;
 import com.tasfe.framework.crud.api.Crudable;
-import com.tasfe.framework.crud.api.StoragerType;
+import com.tasfe.framework.crud.api.enums.StoragerType;
 import com.tasfe.framework.crud.api.annotation.Route;
 import com.tasfe.framework.crud.api.annotation.Sharding;
 import com.tasfe.framework.crud.api.annotation.Storager;
-import com.tasfe.framework.crud.api.dto.CrudParam;
+import com.tasfe.framework.crud.api.params.CrudParam;
 import com.tasfe.framework.crud.core.sharding.CrudShardingDataSource;
 import com.tasfe.framework.crud.core.utils.FieldReflectUtil;
 import org.springframework.beans.BeansException;

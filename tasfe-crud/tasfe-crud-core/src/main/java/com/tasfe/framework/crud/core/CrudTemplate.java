@@ -1,9 +1,9 @@
 package com.tasfe.framework.crud.core;
 
-import com.tasfe.framework.crud.api.CrudMethod;
+import com.tasfe.framework.crud.api.enums.CrudMethod;
 import com.tasfe.framework.crud.api.CrudOperator;
-import com.tasfe.framework.crud.api.dto.CrudParam;
-import com.tasfe.framework.crud.api.dto.Pagination;
+import com.tasfe.framework.crud.api.params.CrudParam;
+import com.tasfe.framework.crud.api.params.Pagination;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

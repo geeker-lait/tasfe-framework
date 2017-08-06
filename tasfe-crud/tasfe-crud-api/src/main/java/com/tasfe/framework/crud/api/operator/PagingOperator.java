@@ -1,8 +1,6 @@
 package com.tasfe.framework.crud.api.operator;
 
-import com.tasfe.framework.crud.api.dto.Pagination;
-
-import java.util.List;
+import com.tasfe.framework.crud.api.params.Pagination;
 
 /**
  * Created by Lait on 2017/7/7.

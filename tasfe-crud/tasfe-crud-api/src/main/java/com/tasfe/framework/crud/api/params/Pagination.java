@@ -1,4 +1,4 @@
-package com.tasfe.framework.crud.api.dto;
+package com.tasfe.framework.crud.api.params;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
