@@ -10,7 +10,8 @@ public interface CrudOperator extends
         SelectOperator,
         UpdateOperator,
         DeleteOperator,
-        PagingOperator {
+        PagingOperator,
+        FunctionOperator{
 
 
 }

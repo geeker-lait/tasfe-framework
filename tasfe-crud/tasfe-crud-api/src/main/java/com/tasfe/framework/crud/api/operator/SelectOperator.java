@@ -41,11 +41,5 @@ public interface SelectOperator{
     <Entity> List<Entity> find(Entity entity);
 
 
-    /**
-     * 根据条件获取查询的总记录数
-     *
-     * @param entity 查询条件参数
-     * @return 总记录数
-     */
-    <Entity> Long counts(Entity entity) throws Exception;
+
 }

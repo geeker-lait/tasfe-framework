@@ -35,6 +35,9 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
         return this;
     }
 
+
+
+
     /**
      * 自定义xml文件,设置执行方法名
      * @param method
@@ -44,6 +47,9 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
         CrudTemplate.method.set(method);
         return this;
     }
+
+
+
 
     /**
      * 自定义xml文件,执行并填充对象模型
@@ -60,6 +66,26 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
         CrudTemplate.method.remove();
         return entity;
     }
+
+
+
+
+
+
+    public CrudTemplate params(CrudParam crudParam){
+
+        return this;
+    }
+
+
+    public <T> T forClass(Class<T> clazz) throws IllegalAccessException, InstantiationException {
+        T t = clazz.newInstance();
+
+        return t;
+    }
+
+
+
 
 
     /**
