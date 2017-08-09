@@ -156,6 +156,14 @@
 
 
 
+            <!--################### tasfe-netty module########################-->
+
+            <dependency>
+                <groupId>com.tasfe.framework</groupId>
+                <artifactId>tasfe-netty</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!--###################### 3th jar ##########################$$$-->
             <dependency>
                 <groupId>junit</groupId>
