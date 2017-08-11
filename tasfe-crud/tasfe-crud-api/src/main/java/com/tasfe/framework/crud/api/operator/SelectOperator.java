@@ -1,5 +1,7 @@
 package com.tasfe.framework.crud.api.operator;
 
+import com.tasfe.framework.crud.api.params.Criteria;
+
 import java.util.List;
 
 /**
@@ -38,7 +40,7 @@ public interface SelectOperator{
      * @param entity
      * @return
      */
-    <Entity> List<Entity> find(Entity entity);
+    <Entity> List<Entity> find(Entity entity,Criteria criteria) throws Exception;
 
 
 

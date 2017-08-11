@@ -1,5 +1,6 @@
 package com.tasfe.framework.crud.api;
 
+import com.tasfe.framework.crud.api.params.Criteria;
 import com.tasfe.framework.crud.api.params.CrudParam;
 
 import java.util.List;
@@ -128,11 +129,11 @@ public interface Crudable {
      * 高级查询
      *
      * @param clazz      pojo类-class对象
-     * @param crudParam 查询参数
+     * @param criteria 查询参数
      * @return
      * @throws Exception
      */
-    <T> List<T> _find(Class<T> clazz, CrudParam crudParam) throws Exception;
+    <T> List<T> _find(Class<T> clazz, Criteria criteria) throws Exception;
 
     /**
      * 高级查询,指定返回列

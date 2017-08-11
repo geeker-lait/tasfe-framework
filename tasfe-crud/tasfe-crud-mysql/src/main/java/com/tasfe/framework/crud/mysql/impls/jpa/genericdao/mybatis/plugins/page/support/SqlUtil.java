@@ -1,30 +1,6 @@
-/*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014 abel533@gmail.com
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
 package com.tasfe.framework.crud.mysql.impls.jpa.genericdao.mybatis.plugins.page.support;
 
-import com.dao.genericdao.mybatis.plugins.page.MybatisPageImpl;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.mybatis.plugins.page.MybatisPageImpl;
 import org.apache.ibatis.builder.SqlSourceBuilder;
 import org.apache.ibatis.builder.StaticSqlSource;
 import org.apache.ibatis.builder.annotation.ProviderSqlSource;
@@ -104,7 +80,7 @@ public class SqlUtil {
      * @return
      */
     private static MetaObject forObject(Object object) {
-        return MetaObject.forObject(object, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY,DEFAULT_REFLECTION_FACTORY);
+        return MetaObject.forObject(object, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY, DEFAULT_REFLECTION_FACTORY);
     }
 
     //处理SQL
@@ -246,15 +222,15 @@ public class SqlUtil {
      * @throws Throwable 抛出异常
      */
     public Object processPage(Invocation invocation) throws Throwable {
-        try{
+        try {
             Object result = _processPage(invocation);
             clearLocalPage();
             //扩展当前分页对象，使用spring的分页对象
-            if(result instanceof PageHelper){
+            if (result instanceof PageHelper) {
 //            	MybatisPage page = (MybatisPage) result ;
 //            	Page resultPage = new PageImpl(page , new PageRequest(page.getPageNum(), page.getPageSize()), page.getTotal()) ;
 //            	return resultPage ;
-            	return new MybatisPageImpl((PageHelper) result) ;
+                return new MybatisPageImpl((PageHelper) result);
             }
             return result;
         } finally {

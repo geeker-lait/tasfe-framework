@@ -1,6 +1,6 @@
 package com.tasfe.framework.crud.mysql.impls.jpa.genericdao.mybatis.plugins.page;
 
-import com.dao.genericdao.mybatis.plugins.page.support.PageInterceptor;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.mybatis.plugins.page.support.PageInterceptor;
 import org.springframework.data.domain.PageRequest;
 
 /**
@@ -9,19 +9,21 @@ import org.springframework.data.domain.PageRequest;
  * 在后续的mybatis接口中并没有直接使用PageRequest类
  */
 public class MybatisPageRequest extends PageRequest {
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 创建mybatis分页请求，分页号（pageNum）由0开始
-	 * @param pageNum
-	 * @param pageSize
-	 */
-	public MybatisPageRequest(int pageNum, int pageSize) {
-		super(pageNum, pageSize);
-		//设置分页信息
-		PageInterceptor.startPage(pageNum+1, pageSize) ;
-	}
-	
-	public MybatisPageRequest() {
-		super(0, 1);
-	}
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 创建mybatis分页请求，分页号（pageNum）由0开始
+     *
+     * @param pageNum
+     * @param pageSize
+     */
+    public MybatisPageRequest(int pageNum, int pageSize) {
+        super(pageNum, pageSize);
+        //设置分页信息
+        PageInterceptor.startPage(pageNum + 1, pageSize);
+    }
+
+    public MybatisPageRequest() {
+        super(0, 1);
+    }
 }

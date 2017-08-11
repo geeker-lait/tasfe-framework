@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="inserter">
+
+    <!-- 单挑插入 -->
+    <insert id="_in" parameterType="map" keyProperty="id">
+        insert into ${tableName}
+        <foreach item="columnValue" index="columnName" collection="columnValueMapping" open="(" separator="," close=")">
+            ${columnName}
+        </foreach>
+        values
+        <foreach item="columnValue" index="columnName" collection="columnValueMapping" open="(" separator="," close=")">
+            #{columnValue}
+        </foreach>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="_ins" parameterType="map"  keyProperty="id">
+        insert into ${tableName}
+        <foreach item="columnName" index="index" collection="columns" open="(" separator="," close=")">
+            ${columnName}
+        </foreach>
+        values
+        <foreach item="rowMapping" index="index" collection="dataList" separator=",">
+            <foreach item="columnValue" index="columnName" collection="rowMapping" open="(" separator="," close=")">
+                #{columnValue}
+            </foreach>
+        </foreach>
+    </insert>
+
+</mapper>

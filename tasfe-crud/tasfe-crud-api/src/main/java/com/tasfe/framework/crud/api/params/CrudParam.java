@@ -39,10 +39,16 @@ public class CrudParam {
      */
     private String conditionExp;
 
+
+    /**
+     *  特殊的自定义的查询条件
+     */
+    //private Criteria criteria;
+
     /**
      * 表达式
      */
-    private List<Kvc> kvcs;
+    //private List<Kvc> kvcs;
 
     /**
      * 查询条件 where 表达式中的参数集
@@ -90,6 +96,12 @@ public class CrudParam {
 
     public CrudParam() {
     }
+
+
+   /* public CrudParam(CrudMethod cm, Criteria criteria) {
+        this.crudMethod = cm.toString();
+        this.criteria = criteria;
+    }*/
 
     public <T> CrudParam(CrudMethod cm, List<T> records) {
         this.crudMethod = cm.toString();

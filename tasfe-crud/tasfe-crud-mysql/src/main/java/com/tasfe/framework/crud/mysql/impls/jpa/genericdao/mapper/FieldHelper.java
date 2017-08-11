@@ -1,6 +1,5 @@
 package com.tasfe.framework.crud.mysql.impls.jpa.genericdao.mapper;
 
-import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ClassUtils;
 
@@ -87,7 +86,7 @@ public class FieldHelper {
     public static Map<String,EntityField> getAllEntityFieldNameMap(Class<?> entityClass) {
         List<EntityField> fields = getAllEntityFieldList(entityClass) ;
 
-        Map<String,EntityField> entityFieldMap = Maps.newHashMap() ;
+        Map<String,EntityField> entityFieldMap = new HashMap<>() ;
 
         if(fields!=null){
             for (EntityField field : fields) {
@@ -107,7 +106,7 @@ public class FieldHelper {
     public static Map<String,EntityField> getAllEntityFieldColumnMap(Class<?> entityClass) {
         List<EntityField> fields = getAllEntityFieldList(entityClass) ;
 
-        Map<String,EntityField> entityFieldMap = Maps.newHashMap() ;
+        Map<String,EntityField> entityFieldMap =  new HashMap<>() ;
 
         if(fields!=null){
             for (EntityField field : fields) {

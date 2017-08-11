@@ -1,5 +1,6 @@
 package com.tasfe.framework.crud.test.service;
 
+import com.tasfe.framework.crud.api.params.Criteria;
 import com.tasfe.framework.crud.core.CrudTemplate;
 import com.tasfe.framework.crud.test.model.entity.Member;
 import com.tasfe.framework.crud.test.model.entity.User;
@@ -103,6 +104,12 @@ public class CrudTest {
         /*users = crudTemplate.gets(user);
         System.out.println(user +"====="+ users.size());*/
 
+        Criteria criteria = Criteria.from(User.class).where().endWhere();
+        //criteria.put(User.ID, Operator.GT,user.getId()).or().;
+
+        Object object = new Object();
+
+        List<User> userass = crudTemplate.find(user,criteria);
 
 
 

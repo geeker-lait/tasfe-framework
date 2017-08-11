@@ -2,6 +2,7 @@ package com.tasfe.framework.crud.core;
 
 import com.tasfe.framework.crud.api.enums.CrudMethod;
 import com.tasfe.framework.crud.api.CrudOperator;
+import com.tasfe.framework.crud.api.params.Criteria;
 import com.tasfe.framework.crud.api.params.CrudParam;
 import com.tasfe.framework.crud.api.params.Pagination;
 import org.springframework.beans.BeansException;
@@ -132,10 +133,9 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
     }
 
     @Override
-    public <Entity> List<Entity> find(Entity entity) {
-
-
-        return null;
+    public <Entity> List<Entity> find(Entity entity,Criteria criteria) throws Exception {
+        CrudParam crudParam = new CrudParam(CrudMethod.FIND,criteria);
+        return (List<Entity>) crudRouter.route(crudParam);
     }
 
 

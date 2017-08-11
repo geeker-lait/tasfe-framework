@@ -2,7 +2,9 @@ package com.tasfe.framework.crud.mysql;
 
 import com.tasfe.framework.crud.api.Crudable;
 import com.tasfe.framework.crud.api.enums.StoragerType;
+import com.tasfe.framework.crud.api.params.Criteria;
 import com.tasfe.framework.crud.api.params.CrudParam;
+import com.tasfe.framework.crud.api.params.Kvc;
 import com.tasfe.framework.crud.core.CrudTemplate;
 import com.tasfe.framework.crud.api.operator.mysql.RdbOperator;
 import com.tasfe.framework.crud.core.utils.FieldReflectUtil;
@@ -34,6 +36,7 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
     private SqlSession sqlSession;
 
 
+    /********************************** in *************************************/
     @Override
     public <T> void _in(T t) throws Exception {
         Map<String, Object> param = new HashMap<>();
@@ -52,7 +55,6 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
     @Override
     public <T> void _ins(List<T> list) throws Exception {
         Map<String, Object> param = new HashMap<String, Object>();
-
         String tableName = "";
         List<String> columns = new ArrayList<String>();
 
@@ -70,15 +72,53 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
             Map<String, String> mapping = GeneralMapperReflectUtil.getAllFieldValueMapping(t);
             dataList.add(mapping);
         }
-
         param.put("tableName", tableName);
         param.put("columns", columns);
         param.put("dataList", dataList);
-
         sqlSession.update(Crudable.INS, param);
-
     }
 
+
+    /********************************** upd *************************************/
+    @Override
+    public <T> int _upd(T t) throws Exception {
+        Map<String, Object> param = new HashMap<String, Object>();
+
+        Class<?> clazz = t.getClass();
+
+        String tableName = GeneralMapperReflectUtil.getTableName(clazz);
+        String primaryKey = GeneralMapperReflectUtil.getPrimaryKey(clazz);
+
+        Map<String, String> mapping = GeneralMapperReflectUtil.getFieldValueMappingExceptNull(t,false);
+
+        String primaryValue = mapping.get(primaryKey);
+
+        mapping.remove(primaryKey);
+
+        param.put("tableName", tableName);
+        param.put("primaryKey", primaryKey);
+        param.put("primaryValue", primaryValue);
+        param.put("columnValueMapping", mapping);
+
+        return sqlSession.update(Crudable.UPD,param);
+    }
+
+    @Override
+    public <T> int _upds(Class<T> clazz, Map<String, Object> columnValueMapping, String conditionExp, Map<String, Object> conditionParam) throws Exception {
+        Map<String, Object> param = new HashMap<String, Object>();
+
+        String tableName = GeneralMapperReflectUtil.getTableName(clazz);
+
+        param.put("tableName", tableName);
+        param.put("columnValueMapping", columnValueMapping);
+        param.put("conditionExp", conditionExp);
+        param.put("conditionParam", conditionParam);
+        return 0;
+    }
+
+
+
+    /********************************** get *************************************/
 
     @Override
     public <T> T _get(Class<T> clazz, Long pk) throws Exception {
@@ -134,10 +174,24 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
 
 
     @Override
-    public <T> List<T> _find(Class<T> clazz, CrudParam crudParam) throws Exception {
+    public <T> List<T> _find(Class<T> clazz, Criteria criteria) throws Exception {
         List<T> result = new ArrayList<>();
+        Map<String, Object> param = new HashMap<>();
+        String tableName = GeneralMapperReflectUtil.getTableName(criteria.getClazz());
 
-        crudParam.setQueryColumn(GeneralMapperReflectUtil.getAllColumns(clazz,false));
+        param.put("table", tableName);
+
+        param.put("columns", criteria.getSelects().size() == 0 ? GeneralMapperReflectUtil.getAllColumns(clazz,false): criteria.getSelects());
+
+        param.put("whereExp",criteria.getWhere().getKvcs());
+
+        param.put("orderExp",criteria.getOrder());
+
+        param.put("limit",criteria.getLimit());
+
+        sqlSession.selectList(Crudable.FIND,param);
+
+
 
         /*List<Map<String, Object>> list = mysqlSelectAdvancedByColumn(clazz, crudParam);
 
@@ -153,6 +207,12 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
     public <T> List<Map<String, Object>> _query(Class<T> clazz, CrudParam crudParam) throws Exception {
         return null;
     }
+
+
+
+
+    /********************************** del *************************************/
+
 
     @Override
     public <T> void _del(CrudParam crudParam) throws Exception {
@@ -197,42 +257,9 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
         return 0;
     }
 
-    @Override
-    public <T> int _upd(T t) throws Exception {
-        Map<String, Object> param = new HashMap<String, Object>();
 
-        Class<?> clazz = t.getClass();
 
-        String tableName = GeneralMapperReflectUtil.getTableName(clazz);
-        String primaryKey = GeneralMapperReflectUtil.getPrimaryKey(clazz);
-
-        Map<String, String> mapping = GeneralMapperReflectUtil.getFieldValueMappingExceptNull(t,false);
-
-        String primaryValue = mapping.get(primaryKey);
-
-        mapping.remove(primaryKey);
-
-        param.put("tableName", tableName);
-        param.put("primaryKey", primaryKey);
-        param.put("primaryValue", primaryValue);
-        param.put("columnValueMapping", mapping);
-
-        return sqlSession.update(Crudable.UPD,param);
-    }
-
-    @Override
-    public <T> int _upds(Class<T> clazz, Map<String, Object> columnValueMapping, String conditionExp, Map<String, Object> conditionParam) throws Exception {
-        Map<String, Object> param = new HashMap<String, Object>();
-
-        String tableName = GeneralMapperReflectUtil.getTableName(clazz);
-
-        param.put("tableName", tableName);
-        param.put("columnValueMapping", columnValueMapping);
-        param.put("conditionExp", conditionExp);
-        param.put("conditionParam", conditionParam);
-        return 0;
-    }
-
+    /********************************** funs *************************************/
     @Override
     public <T> Long _count(Class<T> clazz, CrudParam crudParam) throws Exception {
         Map<String, Object> param = new HashMap<>();

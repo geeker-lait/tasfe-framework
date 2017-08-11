@@ -1,15 +1,16 @@
 package com.tasfe.framework.crud.mysql.impls.jpa.genericdao.mybatis.meta;
 
-import com.dao.genericdao.mapper.EntityField;
-import com.dao.genericdao.mapper.FieldHelper;
-import com.google.common.collect.Maps;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.mapper.EntityField;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.mapper.FieldHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.reflection.MetaClass;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.wrapper.BeanWrapper;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * JPA实体查找
@@ -20,14 +21,14 @@ public class JpaBeanWrapper extends BeanWrapper {
     /**
      * class类和内部属性的映射
      */
-    private static final Map<String , Map<String,EntityField>> entityFieldsMap = Maps.newConcurrentMap() ;
+    private static final Map<String , Map<String,EntityField>> entityFieldsMap = new HashMap<>();
 
     protected Object object ;
 
     protected MetaClass metaClass ;
 
     //object class内的字段映射
-    protected Map<String,EntityField> entityFieldColumnMap = Maps.newConcurrentMap() ;
+    protected Map<String,EntityField> entityFieldColumnMap = new ConcurrentHashMap<>() ;
 
     public JpaBeanWrapper(MetaObject metaObject, Object object) {
         super(metaObject, object) ;

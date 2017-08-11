@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.Table;
 import javax.sql.DataSource;
+import java.lang.reflect.Method;
 import java.util.List;
 
 
@@ -59,6 +60,11 @@ public class CrudRouter implements ApplicationContextAware {
 
             for (StoragerType storagerType : storagerTypes) {
                 crudable = (Crudable)applicationContext.getBean(storagerType.toString().toLowerCase());
+
+                //Method method ;
+                //method.invoke(crudable,obj);
+
+
                 CrudMethod cm = CrudMethod.get(crudParam.getCrudMethod());
                 switch (cm) {
                     case IN:

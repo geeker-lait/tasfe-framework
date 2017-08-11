@@ -1,6 +1,6 @@
 package com.tasfe.framework.crud.mysql.impls.jpa.genericdao.jpa;
 
-import com.dao.genericdao.dao.BaseDataRepository;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.dao.BaseDataRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

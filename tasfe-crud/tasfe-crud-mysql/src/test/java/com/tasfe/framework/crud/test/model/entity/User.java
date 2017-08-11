@@ -17,6 +17,11 @@ import com.tasfe.framework.crud.mysql.type.DataState;
 @Table(name = "t_user")
 @Storager(storage={StoragerType.MYSQL})
 public class User{
+
+    public static final String ID = "id";
+    public static final String USER_ID = "userId";
+
+
     @Id
     private Long id;
 

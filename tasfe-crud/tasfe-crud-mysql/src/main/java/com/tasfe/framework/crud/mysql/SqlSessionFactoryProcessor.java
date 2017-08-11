@@ -16,7 +16,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SqlSessionFactoryProcessor implements BeanFactoryPostProcessor {
-    private final static String MAPPER_LOCATION_PATH = "com/tasfe/framework/crud/mysql/impls/mybatis/mapper/CrudMapper.xml";
+    //private final static String MAPPER_LOCATION_PATH = "com/tasfe/framework/crud/mysql/impls/mybatis/mapper/CrudMapper.xml";
+
+    private final static String MAPPER_LOCATION_PATH =
+            "META-INF/mybatis/mappers/InsertMapper.xml," +
+                    "META-INF/mybatis/mappers/SelectMapper.xml," +
+                    "META-INF/mybatis/mappers/UpdateMapper.xml," +
+                    "META-INF/mybatis/mappers/DeleteMapper.xml," +
+                    "META-INF/mybatis/mappers/FunctionMapper.xml";
+
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
         /**
@@ -25,7 +33,6 @@ public class SqlSessionFactoryProcessor implements BeanFactoryPostProcessor {
 
         BeanDefinition beanDefinition = configurableListableBeanFactory.getBeanDefinition("sqlSessionFactory");
         MutablePropertyValues mutablePropertyValues = beanDefinition.getPropertyValues();
-
 
 
         //SqlSessionFactoryBean sqlSessionFactoryBean = configurableListableBeanFactory.getBean(SqlSessionFactoryBean.class);
@@ -46,7 +53,7 @@ public class SqlSessionFactoryProcessor implements BeanFactoryPostProcessor {
              */
             String proName = "mapperLocations";
             Resource resource = new ClassPathResource(MAPPER_LOCATION_PATH);
-            if(mutablePropertyValues.contains(proName)){
+            if (mutablePropertyValues.contains(proName)) {
                 /**
                  * 强转
                  */
@@ -60,7 +67,7 @@ public class SqlSessionFactoryProcessor implements BeanFactoryPostProcessor {
                 Resource resources[] = new Resource[2];
                 resources[0] = resource;
                 resources[1] = new ClassPathResource(mapperLocations);
-                mutablePropertyValues.addPropertyValue(proName,resources);
+                mutablePropertyValues.addPropertyValue(proName, resources);
             } else {
                 Resource resources[] = {resource};
                 mutablePropertyValues.add(proName, resources);
