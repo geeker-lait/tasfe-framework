@@ -74,6 +74,76 @@
     </select>
 
 
+    <select id="_find" parameterType="map" resultType="hashmap">
+        select
+        <foreach item="columnName" index="index" collection="queryColumn" separator=",">
+            ${columnName}
+        </foreach>
+        from ${tableName}
+        <where>
+
+            <if test="pks != null">
+                <foreach item="pk" index="index" collection="pks" separator="or">
+                    id=${pk}
+                </foreach>
+            </if>
+
+            <if test="conditionExp != null">
+                ${conditionExp}
+            </if>
+
+            <if test="conditionParam != null">
+                <foreach item="column" index="index" collection="conditionParam" separator="and">
+                    ${index} = #{column}
+                </foreach>
+            </if>
+        </where>
+
+        <if test="orderExp != null">
+            order by ${orderExp}
+        </if>
+
+        <if test="page != null">
+            limit #{page.startRowNo},#{page.pageSize}
+        </if>
+    </select>
+
+
+    <select id="_find" parameterType="map" resultType="hashmap">
+        select
+        <foreach item="columnName" index="index" collection="queryColumn" separator=",">
+            ${columnName}
+        </foreach>
+        from ${tableName}
+        <where>
+
+            <if test="pks != null">
+                <foreach item="pk" index="index" collection="pks" separator="or">
+                    id=${pk}
+                </foreach>
+            </if>
+
+            <if test="conditionExp != null">
+                ${conditionExp}
+            </if>
+
+            <if test="conditionParam != null">
+                <foreach item="column" index="index" collection="conditionParam" separator="and">
+                    ${index} = #{column}
+                </foreach>
+            </if>
+        </where>
+
+        <if test="orderExp != null">
+            order by ${orderExp}
+        </if>
+
+        <if test="page != null">
+            limit #{page.startRowNo},#{page.pageSize}
+        </if>
+    </select>
+
+
 
 
     <delete id="_del" parameterType="map">

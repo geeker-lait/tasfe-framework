@@ -1,5 +1,7 @@
 package com.tasfe.framework.crud.api.operator;
 
+import com.tasfe.framework.crud.api.params.Criteria;
+
 import java.util.List;
 
 /**
@@ -38,14 +40,8 @@ public interface SelectOperator{
      * @param entity
      * @return
      */
-    <Entity> List<Entity> find(Entity entity);
+    <Entity> List<Entity> find(Entity entity,Criteria criteria) throws Exception;
 
 
-    /**
-     * 根据条件获取查询的总记录数
-     *
-     * @param entity 查询条件参数
-     * @return 总记录数
-     */
-    <Entity> Long counts(Entity entity) throws Exception;
+
 }

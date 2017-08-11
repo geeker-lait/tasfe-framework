@@ -1,6 +1,6 @@
 package com.tasfe.framework.crud.api.annotation;
 
-import com.tasfe.framework.crud.api.StoragerType;
+import com.tasfe.framework.crud.api.enums.StoragerType;
 
 import java.lang.annotation.*;
 

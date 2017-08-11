@@ -1,5 +1,7 @@
 package com.tasfe.framework.crud.test.service;
 
+import com.tasfe.framework.crud.api.params.Criteria;
+import com.tasfe.framework.crud.api.params.Operator;
 import com.tasfe.framework.crud.core.CrudTemplate;
 import com.tasfe.framework.crud.test.model.entity.Member;
 import com.tasfe.framework.crud.test.model.entity.User;
@@ -38,8 +40,8 @@ public class CrudTest {
     //@Resource(name="hiveTemplate")
     //CrudOperator<User> hiveOperator;
 
-    @Autowired
-    UserMapper userMapper;
+    //@Autowired
+    //UserMapper userMapper;
 
     @Resource(name="mysql")
     CrudTemplate crudTemplate;
@@ -86,6 +88,19 @@ public class CrudTest {
 
 
     @Test
+    public void testFind() throws Exception {
+        User user = new User();
+        user.setEmail("lait.zhang@gmail.com");
+        user.setId(96L);
+
+        Criteria criteria = Criteria.from(User.class).where().and("id", Operator.EQ).endWhere();
+        List<User> userass = crudTemplate.find(user,criteria);
+
+    }
+
+
+
+    @Test
     public void testGet() throws Exception {
         User user = new User();
         user.setId(95L);
@@ -103,6 +118,12 @@ public class CrudTest {
         /*users = crudTemplate.gets(user);
         System.out.println(user +"====="+ users.size());*/
 
+        Criteria criteria = Criteria.from(User.class).where().endWhere();
+        //criteria.put(User.ID, Operator.GT,user.getId()).or().;
+
+        Object object = new Object();
+
+        List<User> userass = crudTemplate.find(user,criteria);
 
 
 

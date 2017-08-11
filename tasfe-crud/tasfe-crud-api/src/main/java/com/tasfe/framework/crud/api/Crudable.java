@@ -1,6 +1,7 @@
 package com.tasfe.framework.crud.api;
 
-import com.tasfe.framework.crud.api.dto.QueryParam;
+import com.tasfe.framework.crud.api.params.Criteria;
+import com.tasfe.framework.crud.api.params.CrudParam;
 
 import java.util.List;
 import java.util.Map;
@@ -116,33 +117,33 @@ public interface Crudable {
      * 高级查询
      *
      * @param clazz      pojo类-class对象
-     * @param queryParam 查询参数
+     * @param crudParam 查询参数
      * @return
      * @throws Exception
      */
-    <T> List<T> _gets(Class<T> clazz, QueryParam queryParam) throws Exception;
+    <T> List<T> _gets(Class<T> clazz, CrudParam crudParam) throws Exception;
 
 
 
     /**
      * 高级查询
      *
-     * @param clazz      pojo类-class对象
-     * @param queryParam 查询参数
+     * @param t      pojo类-class对象
+     * @param criteria 查询参数
      * @return
      * @throws Exception
      */
-    <T> List<T> _find(Class<T> clazz, QueryParam queryParam) throws Exception;
+    <T> List<T> _find(T t, Criteria criteria) throws Exception;
 
     /**
      * 高级查询,指定返回列
      *
      * @param clazz      pojo类-class对象
-     * @param queryParam 查询参数
+     * @param crudParam 查询参数
      * @return
      * @throws Exception
      */
-    <T> List<Map<String, Object>> _query(Class<T> clazz, QueryParam queryParam) throws Exception;
+    <T> List<Map<String, Object>> _query(Class<T> clazz, CrudParam crudParam) throws Exception;
 
     /*********************************** delete ***********************************/
     /**
@@ -152,10 +153,10 @@ public interface Crudable {
      * </p>
      *
      * @param <T>          pojo类
-     * @param queryParam        pojo类-class对象
+     * @param crudParam        pojo类-class对象
      * @return 数据条数
      */
-    <T> void _del(QueryParam queryParam) throws Exception;
+    <T> void _del(CrudParam crudParam) throws Exception;
     /**
      * 删除
      * <p>
@@ -177,8 +178,8 @@ public interface Crudable {
      *
      * @param <T>            pojo类
      * @param clazz          pojo类-class对象
-     * @param conditionExp   查询条件 where 表达式 @see QueryParam
-     * @param conditionParam 查询条件 where 表达式中的参数集 @see QueryParam
+     * @param conditionExp   查询条件 where 表达式 @see CrudParam
+     * @param conditionParam 查询条件 where 表达式中的参数集 @see CrudParam
      * @return 数据条数
      */
     <T> int _dels(Class<T> clazz, String conditionExp, Map<String, Object> conditionParam);
@@ -213,8 +214,8 @@ public interface Crudable {
      *
      * @param clazz              pojo类-class对象
      * @param columnValueMapping 需要更新的列名-值,注意列名必须与数据库中列名一致
-     * @param conditionExp       查询条件 where 表达式 @see QueryParam
-     * @param conditionParam     查询条件 where 表达式中的参数集 @see QueryParam
+     * @param conditionExp       查询条件 where 表达式 @see CrudParam
+     * @param conditionParam     查询条件 where 表达式中的参数集 @see CrudParam
      * @return 数据条数
      * @throws Exception
      */
@@ -226,52 +227,52 @@ public interface Crudable {
      * 高级查询
      *
      * @param clazz      pojo类-class对象
-     * @param queryParam 查询参数
+     * @param crudParam 查询参数
      * @return
      * @throws Exception
      */
-    <T> Long _count(Class<T> clazz, QueryParam queryParam) throws Exception;
+    <T> Long _count(Class<T> clazz, CrudParam crudParam) throws Exception;
 
 
     /**
      * 获取最大数
-     * @param queryParam
+     * @param crudParam
      * @param <T>
      * @return
      * @throws Exception
      */
-    <T> Number _max(QueryParam queryParam)throws Exception;
+    <T> Number _max(CrudParam crudParam)throws Exception;
 
 
 
     /**
      * 获取最大数
-     * @param queryParam
+     * @param crudParam
      * @param <T>
      * @return
      * @throws Exception
      */
-    <T> Number _min(QueryParam queryParam)throws Exception;
+    <T> Number _min(CrudParam crudParam)throws Exception;
 
 
     /**
      * 获取最大数
-     * @param queryParam
+     * @param crudParam
      * @param <T>
      * @return
      * @throws Exception
      */
-    <T> Number _avg(QueryParam queryParam)throws Exception;
+    <T> Number _avg(CrudParam crudParam)throws Exception;
 
 
     /**
      * 获取最大数
-     * @param queryParam
+     * @param crudParam
      * @param <T>
      * @return
      * @throws Exception
      */
-    <T> Number _sum(QueryParam queryParam)throws Exception;
+    <T> Number _sum(CrudParam crudParam)throws Exception;
 
 
 }
