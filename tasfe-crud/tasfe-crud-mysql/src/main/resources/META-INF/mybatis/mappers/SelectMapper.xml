@@ -3,11 +3,13 @@
 <mapper namespace="selecter">
 
     <select id="_query" parameterType="map" resultType="hashmap">
+        <![CDATA[
+
         select
         <foreach item="column" index="index" collection="columns" separator=",">
             ${column}
         </foreach>
-        from ${tableName}
+        from ${table}
         <where>
             <if test="whereExp != null">
                 <foreach item="exp" index="index" collection="whereExp" separator=" ">
@@ -23,10 +25,36 @@
         <if test="limit != null">
             limit #{limit.start},#{limit.offset}
         </if>
+
+        ]]>
     </select>
 
 
     <select id="_find" parameterType="map" resultType="hashmap">
+        select
+        <foreach item="column" index="index" collection="_columns" separator="," >
+            ${column}
+        </foreach>
+        from ${_table}
+        <where>
+            <if test="_whereExp != null">
+                ${_whereExp}
+            </if>
+        </where>
+
+        <if test="_orderExp.size > 0 and _orderExp != null">
+            order by
+            <foreach item="order" index="index" collection="_orderExp" separator=",">
+                ${order}
+            </foreach>
+        </if>
+
+        <if test="_limit != null">
+            limit #{_limit.start},#{_limit.offset}
+        </if>
+    </select>
+
+    <!--<select id="_find" parameterType="map" resultType="hashmap">
         select
         <foreach item="columnName" index="index" collection="queryColumn" separator=",">
             ${columnName}
@@ -58,7 +86,7 @@
         <if test="page != null">
             limit #{page.startRowNo},#{page.pageSize}
         </if>
-    </select>
+    </select>-->
 
 
 </mapper>

@@ -135,6 +135,7 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
     @Override
     public <Entity> List<Entity> find(Entity entity,Criteria criteria) throws Exception {
         CrudParam crudParam = new CrudParam(CrudMethod.FIND,criteria);
+        crudParam.setEntity(entity);
         return (List<Entity>) crudRouter.route(crudParam);
     }
 

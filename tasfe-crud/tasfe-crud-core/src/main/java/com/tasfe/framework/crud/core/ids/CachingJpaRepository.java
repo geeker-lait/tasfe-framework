@@ -1,6 +1,5 @@
 package com.tasfe.framework.crud.core.ids;
 
-import com.slyak.spring.jpa.GenericJpaRepository;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -11,7 +10,7 @@ import java.util.List;
 /**
  *  Created by Lait on 2017/8/6.
  */
-@NoRepositoryBean
+/*@NoRepositoryBean
 public interface CachingJpaRepository<T, ID extends Serializable> extends GenericJpaRepository<T, ID> {
 
     @Cacheable(value = "dict")
@@ -53,4 +52,4 @@ public interface CachingJpaRepository<T, ID extends Serializable> extends Generi
     @CacheEvict(value = "dict", allEntries = true)
     @Override
     void deleteAll();
-}
+}*/

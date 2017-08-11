@@ -43,7 +43,7 @@ public class CrudParam {
     /**
      *  特殊的自定义的查询条件
      */
-    //private Criteria criteria;
+    private Criteria criteria;
 
     /**
      * 表达式
@@ -98,10 +98,11 @@ public class CrudParam {
     }
 
 
-   /* public CrudParam(CrudMethod cm, Criteria criteria) {
+    public <T> CrudParam(CrudMethod cm, Criteria criteria) {
         this.crudMethod = cm.toString();
         this.criteria = criteria;
-    }*/
+        this.queryClazz = criteria.getClazz();
+    }
 
     public <T> CrudParam(CrudMethod cm, List<T> records) {
         this.crudMethod = cm.toString();

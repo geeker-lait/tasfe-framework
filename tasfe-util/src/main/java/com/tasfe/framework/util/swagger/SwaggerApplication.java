@@ -1,4 +1,5 @@
 package com.tasfe.framework.util.swagger;
+/*
 
 import io.swagger.jaxrs.config.BeanConfig;
 
@@ -40,3 +41,4 @@ public class SwaggerApplication extends Application {
         return singletons;
     }
 }
+*/

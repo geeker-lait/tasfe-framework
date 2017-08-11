@@ -1,12 +1,11 @@
 package com.tasfe.framework.crud.mysql.impls.jpa.genericdao.jpa.impl;
 
-import com.dao.genericdao.jpa.GenericJpaRepository;
-import com.dao.genericdao.jpa.specification.CacheableSpecification;
-import com.dao.genericdao.util.JPAUtil;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.jpa.GenericJpaRepository;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.jpa.specification.CacheableSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.jpa.criteria.CriteriaBuilderImpl;
-import org.hibernate.jpa.criteria.CriteriaUpdateImpl;
+//import org.hibernate.jpa.criteria.CriteriaBuilderImpl;
+//import org.hibernate.jpa.criteria.CriteriaUpdateImpl;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
@@ -27,7 +26,7 @@ import java.util.*;
  * <jpa:repositories>...</jpa:repositories>会根据查找到的接口名称，自动寻找后缀为Impl的接口实现类，
  * 如果接口实现类需要交由spring管理，必须提供不带参数的构造方法。
  */
-@Slf4j
+/*@Slf4j
 public class GenericJpaRepositoryImpl<T, ID extends Serializable>
 		extends SimpleJpaRepository<T, ID>
 		implements GenericJpaRepository<T, ID> {
@@ -59,11 +58,11 @@ public class GenericJpaRepositoryImpl<T, ID extends Serializable>
 		
 		return typedQuery ;
 	}
-	/**
+	*//**
 	 * 应用二级缓存
 	 * @param typedQuery
 	 * @param spec
-	 */
+	 *//*
 	protected void applySecondLevelCache(TypedQuery<?> typedQuery , Specification<T> spec) {
 		if(spec != null && spec instanceof CacheableSpecification){
 			CacheableSpecification cacheableSpecification = (CacheableSpecification)spec ;
@@ -107,10 +106,10 @@ public class GenericJpaRepositoryImpl<T, ID extends Serializable>
 		}
 		return entity ;
 	}
-	/**
+	*//**
 	 * 判断是否具有复杂的关联关系，如果具有则执行动态更新，否则执行完整更新
 	 * @return
-	 */
+	 *//*
 	public boolean isExecuteDynamicUpdate(T entity , Collection<String> updateFieldsName){
 		//没有执行需要更新的字段
 		if(updateFieldsName==null||updateFieldsName.size()<1){
@@ -121,12 +120,12 @@ public class GenericJpaRepositoryImpl<T, ID extends Serializable>
 		//如果简单映射字段中不包括待更新的字段，返回false 
 		return simpleFields.containsAll(updateFieldsName) ;
 	}
-	/**
+	*//**
 	 * 使用动态更新的方法更新数据库简单映射字段的内容
 	 * @param entity
 	 * @param updateFieldsName
 	 * @return
-	 */
+	 *//*
 	public T updateSimpleField(T entity , Collection<String> updateFieldsName){
 		Assert.notEmpty(updateFieldsName , entity.getClass()+"更新字段不能为空。");
 		
@@ -154,13 +153,13 @@ public class GenericJpaRepositoryImpl<T, ID extends Serializable>
 		
 		return entity ;
 	}
-	/**
+	*//**
 	 * 更新复杂实体及相关属性
 	 * @param existEntity 托管实体对象
 	 * @param newEntity 更新实体
 	 * @param updateFieldsName 更新字段
 	 * @return
-	 */
+	 *//*
 	public T updateComplexField(T existEntity , T newEntity , Collection<String> updateFieldsName){
 		//设置托管实体中需要更新的属性
 		if(updateFieldsName!=null&&updateFieldsName.size()>0){
@@ -203,11 +202,11 @@ public class GenericJpaRepositoryImpl<T, ID extends Serializable>
 		return entityList;
 	}
 	
-	/**
+	*//**
 	 * 根据id查询已经存在的实体对象
 	 * @param id
 	 * @return
-	 */
+	 *//*
 	private T findExistEntity(ID id){
 		//查询是否存在待更新的实体
 		T existEntity = getOne(id) ;
@@ -278,12 +277,12 @@ public class GenericJpaRepositoryImpl<T, ID extends Serializable>
 		return result ;
 	}
 
-	/**
+	*//**
 	 * 查询单个字段
 	 * @param field 字段名称
 	 * @param spec 查询条件
      * @return
-     */
+     *//*
 	public List<String> querySingleFields(String field , Specification<T> spec){
 		if(StringUtils.isBlank(field)){
 			return null ;
@@ -389,4 +388,4 @@ public class GenericJpaRepositoryImpl<T, ID extends Serializable>
 		return resultMap ;
 	}
 	
-}
+}*/

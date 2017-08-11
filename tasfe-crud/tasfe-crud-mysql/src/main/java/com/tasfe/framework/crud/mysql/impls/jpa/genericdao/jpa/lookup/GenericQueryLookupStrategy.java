@@ -1,12 +1,13 @@
 package com.tasfe.framework.crud.mysql.impls.jpa.genericdao.jpa.lookup;
 
-import com.dao.genericdao.annotation.MybatisQuery;
-import com.dao.genericdao.jpa.repository.MybatisRepositoryQuery;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.annotation.MybatisQuery;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.jpa.repository.MybatisRepositoryQuery;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.provider.QueryExtractor;
 import org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy;
+import org.springframework.data.projection.ProjectionFactory;
 import org.springframework.data.repository.core.NamedQueries;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.query.EvaluationContextProvider;
@@ -46,6 +47,16 @@ public class GenericQueryLookupStrategy implements QueryLookupStrategy {
     }
 
     @Override
+    public RepositoryQuery resolveQuery(Method method, RepositoryMetadata repositoryMetadata, ProjectionFactory projectionFactory, NamedQueries namedQueries) {
+        if (method.getAnnotation(MybatisQuery.class) != null) {
+            log.info(repositoryMetadata.getRepositoryInterface().getName()+"."+method.getName()+" 为mybatis方法。 ");
+            return new MybatisRepositoryQuery(sqlSessionTemplate , method , repositoryMetadata) ;
+        } else {
+            return jpaQueryLookupStrategy.resolveQuery(method, repositoryMetadata, projectionFactory,namedQueries);
+        }
+    }
+
+    /*@Override
     public RepositoryQuery resolveQuery(Method method, RepositoryMetadata metadata, NamedQueries namedQueries) {
         if (method.getAnnotation(MybatisQuery.class) != null) {
             log.info(metadata.getRepositoryInterface().getName()+"."+method.getName()+" 为mybatis方法。 ");
@@ -53,5 +64,5 @@ public class GenericQueryLookupStrategy implements QueryLookupStrategy {
         } else {
             return jpaQueryLookupStrategy.resolveQuery(method, metadata, namedQueries);
         }
-    }
+    }*/
 }

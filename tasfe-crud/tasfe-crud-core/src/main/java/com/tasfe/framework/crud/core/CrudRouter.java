@@ -56,7 +56,10 @@ public class CrudRouter implements ApplicationContextAware {
             }
 
             Sharding sharding = clazz.getAnnotation(Sharding.class);
-            String key = sharding.key();
+            if(sharding != null){
+                String key = sharding.key();
+            }
+
 
             for (StoragerType storagerType : storagerTypes) {
                 crudable = (Crudable)applicationContext.getBean(storagerType.toString().toLowerCase());
@@ -69,14 +72,14 @@ public class CrudRouter implements ApplicationContextAware {
                 switch (cm) {
                     case IN:
                         Object object = crudParam.getEntity();
-                        Object shardingValue = FieldReflectUtil.getFieldValue(object,key);
-                        Table table = clazz.getAnnotation(Table.class);
-                        String shardingDatabaseAndTable = sharding(table.name(),shardingValue);
+                        //Object shardingValue = FieldReflectUtil.getFieldValue(object,key);
+                        //Table table = clazz.getAnnotation(Table.class);
+                        //String shardingDatabaseAndTable = sharding(table.name(),shardingValue);
 
                         // 获取写数据源
-                        for(DataSource dataSource:readDataSourceList){
+                        /*for(DataSource dataSource:readDataSourceList){
 
-                        }
+                        }*/
                         crudable._in(object);
                         break;
                     case INS:
@@ -91,6 +94,7 @@ public class CrudRouter implements ApplicationContextAware {
                     case LIST:
                         break;
                     case FIND:
+                        crudable._find(crudParam.getEntity(), crudParam.getCriteria());
                         break;
                     case UPD:
                         return crudable._upd(crudParam.getEntity());
@@ -114,9 +118,9 @@ public class CrudRouter implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
-        crudShardingDataSource = applicationContext.getBean(CrudShardingDataSource.class);
-        writeDataSourceList = crudShardingDataSource.getWriteDataSources();
-        readDataSourceList = crudShardingDataSource.getReadDataSources();
+//        crudShardingDataSource = applicationContext.getBean(CrudShardingDataSource.class);
+//        writeDataSourceList = crudShardingDataSource.getWriteDataSources();
+//        readDataSourceList = crudShardingDataSource.getReadDataSources();
     }
 
 

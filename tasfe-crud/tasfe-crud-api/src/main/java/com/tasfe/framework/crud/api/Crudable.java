@@ -128,12 +128,12 @@ public interface Crudable {
     /**
      * 高级查询
      *
-     * @param clazz      pojo类-class对象
+     * @param t      pojo类-class对象
      * @param criteria 查询参数
      * @return
      * @throws Exception
      */
-    <T> List<T> _find(Class<T> clazz, Criteria criteria) throws Exception;
+    <T> List<T> _find(T t, Criteria criteria) throws Exception;
 
     /**
      * 高级查询,指定返回列

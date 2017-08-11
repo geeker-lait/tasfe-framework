@@ -42,13 +42,13 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
         Map<String, Object> param = new HashMap<>();
         Class<?> clazz = t.getClass();
         String tableName = GeneralMapperReflectUtil.getTableName(clazz);
-        Map<String, String> mapping = GeneralMapperReflectUtil.getFieldValueMappingExceptNull(t,false);
+        Map<String, String> mapping = GeneralMapperReflectUtil.getFieldValueMappingExceptNull(t, false);
         param.put("tableName", tableName);
         param.put("columnValueMapping", mapping);
         sqlSession.update(Crudable.IN, param);
-        Field field = FieldReflectUtil.findField(t.getClass(),"id");
-        if(null != field){
-            FieldReflectUtil.setFieldValue(t,field,Long.valueOf(param.get("id").toString()));
+        Field field = FieldReflectUtil.findField(t.getClass(), "id");
+        if (null != field) {
+            FieldReflectUtil.setFieldValue(t, field, Long.valueOf(param.get("id").toString()));
         }
     }
 
@@ -67,7 +67,7 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
             }
             if (columns.size() == 0) {
                 Class<?> clazz = t.getClass();
-                columns = GeneralMapperReflectUtil.getAllColumns(clazz,false);
+                columns = GeneralMapperReflectUtil.getAllColumns(clazz, false);
             }
             Map<String, String> mapping = GeneralMapperReflectUtil.getAllFieldValueMapping(t);
             dataList.add(mapping);
@@ -89,7 +89,7 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
         String tableName = GeneralMapperReflectUtil.getTableName(clazz);
         String primaryKey = GeneralMapperReflectUtil.getPrimaryKey(clazz);
 
-        Map<String, String> mapping = GeneralMapperReflectUtil.getFieldValueMappingExceptNull(t,false);
+        Map<String, String> mapping = GeneralMapperReflectUtil.getFieldValueMappingExceptNull(t, false);
 
         String primaryValue = mapping.get(primaryKey);
 
@@ -100,7 +100,7 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
         param.put("primaryValue", primaryValue);
         param.put("columnValueMapping", mapping);
 
-        return sqlSession.update(Crudable.UPD,param);
+        return sqlSession.update(Crudable.UPD, param);
     }
 
     @Override
@@ -117,7 +117,6 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
     }
 
 
-
     /********************************** get *************************************/
 
     @Override
@@ -126,7 +125,7 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
 
         String tableName = GeneralMapperReflectUtil.getTableName(clazz);
         String primaryKey = GeneralMapperReflectUtil.getPrimaryKey(clazz);
-        List<String> queryColumn = GeneralMapperReflectUtil.getAllColumns(clazz,false);
+        List<String> queryColumn = GeneralMapperReflectUtil.getAllColumns(clazz, false);
 
         param.put("tableName", tableName);
         param.put("primaryKey", primaryKey);
@@ -134,7 +133,7 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
         param.put("queryColumn", queryColumn);
         Map map = sqlSession.selectOne(Crudable.GET, param);
         T t = clazz.newInstance();
-        BeanUtils.populate(t,map);
+        BeanUtils.populate(t, map);
         return t;
     }
 
@@ -144,10 +143,10 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
         String tableName = GeneralMapperReflectUtil.getTableName(clazz);
 
         param.put("tableName", tableName);
-        param.put("queryColumn", null == crudParam.getQueryColumn()?GeneralMapperReflectUtil.getAllColumns(clazz,false): crudParam.getQueryColumn());
+        param.put("queryColumn", null == crudParam.getQueryColumn() ? GeneralMapperReflectUtil.getAllColumns(clazz, false) : crudParam.getQueryColumn());
         Object entity = crudParam.getEntity();
-        if(entity!=null){
-            param.put("conditionParam", null == crudParam.getConditionParam()?GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity,false): crudParam.getConditionParam());
+        if (entity != null) {
+            param.put("conditionParam", null == crudParam.getConditionParam() ? GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity, false) : crudParam.getConditionParam());
         }
 
         param.put("conditionExp", crudParam.getConditionExp());
@@ -162,11 +161,11 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
             param.put("page", page);
         }
 
-        List<Map> maps =  sqlSession.selectList(Crudable.GETS,param);
+        List<Map> maps = sqlSession.selectList(Crudable.GETS, param);
         List<T> ts = new ArrayList<>();
-        for(Map map :maps){
+        for (Map map : maps) {
             T t = clazz.newInstance();
-            BeanUtils.populate(t,map);
+            BeanUtils.populate(t, map);
             ts.add(t);
         }
         return ts;
@@ -174,25 +173,33 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
 
 
     @Override
-    public <T> List<T> _find(Class<T> clazz, Criteria criteria) throws Exception {
-        List<T> result = new ArrayList<>();
+    public <T> List<T> _find(T entity, Criteria criteria) throws Exception {
         Map<String, Object> param = new HashMap<>();
-        String tableName = GeneralMapperReflectUtil.getTableName(criteria.getClazz());
+        //String tableName = GeneralMapperReflectUtil.getTableName(criteria.getClazz());
+        param.put("_table", GeneralMapperReflectUtil.getTableName(criteria.getClazz()));
 
-        param.put("table", tableName);
+        param.put("_columns", criteria.getSelects().size() == 0 ? GeneralMapperReflectUtil.getAllColumns(criteria.getClazz(), false) : criteria.getSelects());
+        /**
+         * 创建模板表达式
+         * and id = #{id} or user_id > #{user_}
+         */
+        List<Kvc> kvcs = criteria.getWhere().getKvcs();
+        String exp = "1=1 ";
+        for (Kvc kvc : kvcs) {
+            exp += kvc.getCondition() + " " + kvc.getKey() + " " + kvc.getSymbol() + " " + "#{" + kvc.getKey() + "}" + " ";
+        }
+        param.put("_whereExp", exp);
 
-        param.put("columns", criteria.getSelects().size() == 0 ? GeneralMapperReflectUtil.getAllColumns(clazz,false): criteria.getSelects());
+        param.put("_orderExp", criteria.getOrder());
 
-        param.put("whereExp",criteria.getWhere().getKvcs());
+        param.put("_limit", criteria.getLimit());
 
-        param.put("orderExp",criteria.getOrder());
-
-        param.put("limit",criteria.getLimit());
-
-        sqlSession.selectList(Crudable.FIND,param);
+        param.putAll(GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity,false));
 
 
 
+        List<T> result = new ArrayList<>();
+        sqlSession.selectList(Crudable.FIND, param);
         /*List<Map<String, Object>> list = mysqlSelectAdvancedByColumn(clazz, crudParam);
 
         if (list != null && list.size() != 0) {
@@ -209,8 +216,6 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
     }
 
 
-
-
     /********************************** del *************************************/
 
 
@@ -223,13 +228,13 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
 
         param.put("tableName", tableName);
         param.put("primaryKey", primaryKey);
-        Field field = FieldReflectUtil.findField(_class,"id");
+        Field field = FieldReflectUtil.findField(_class, "id");
         Long pk = -1L;
-        if(null != field){
-            pk = (Long) FieldReflectUtil.getFieldValue(crudParam.getEntity(),field);
+        if (null != field) {
+            pk = (Long) FieldReflectUtil.getFieldValue(crudParam.getEntity(), field);
         }
-        param.put("primaryValue", crudParam.getPk()==null?pk: crudParam.getPk());
-        sqlSession.delete(Crudable.DEL,param);
+        param.put("primaryValue", crudParam.getPk() == null ? pk : crudParam.getPk());
+        sqlSession.delete(Crudable.DEL, param);
     }
 
     @Override
@@ -258,7 +263,6 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
     }
 
 
-
     /********************************** funs *************************************/
     @Override
     public <T> Long _count(Class<T> clazz, CrudParam crudParam) throws Exception {
@@ -266,16 +270,16 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
         String tableName = GeneralMapperReflectUtil.getTableName(clazz);
 
         param.put("tableName", tableName);
-        param.put("queryColumn", null == crudParam.getQueryColumn()?GeneralMapperReflectUtil.getAllColumns(clazz,false): crudParam.getQueryColumn());
+        param.put("queryColumn", null == crudParam.getQueryColumn() ? GeneralMapperReflectUtil.getAllColumns(clazz, false) : crudParam.getQueryColumn());
         Object entity = crudParam.getEntity();
-        if(entity!=null){
-            param.put("conditionParam", null == crudParam.getConditionParam()?GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity,false): crudParam.getConditionParam());
+        if (entity != null) {
+            param.put("conditionParam", null == crudParam.getConditionParam() ? GeneralMapperReflectUtil.getFieldValueMappingExceptNull(entity, false) : crudParam.getConditionParam());
         }
 
         param.put("conditionExp", crudParam.getConditionExp());
         param.put("pks", crudParam.getPks());
 
-        Long totalSize = sqlSession.selectOne(Crudable.COUNT,param);
+        Long totalSize = sqlSession.selectOne(Crudable.COUNT, param);
         return totalSize;
     }
 
@@ -298,13 +302,6 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
     public <T> Number _sum(CrudParam crudParam) throws Exception {
         return null;
     }
-
-
-
-
-
-
-
 
 
     public final void afterPropertiesSet() throws IllegalArgumentException, BeanInitializationException {

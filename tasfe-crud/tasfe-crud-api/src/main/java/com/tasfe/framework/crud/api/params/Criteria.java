@@ -2,6 +2,7 @@ package com.tasfe.framework.crud.api.params;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,13 +13,13 @@ import java.util.List;
 public class Criteria {
     private Class<?> clazz;
 
-    private List<String> selects;
+    private List<String> selects = new ArrayList<>();
 
     private Where where;
 
     private Limit limit;
 
-    private List<String> order;
+    private List<String> order = new ArrayList<>();
 
     private Criteria(){
 

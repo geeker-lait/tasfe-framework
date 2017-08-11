@@ -1,6 +1,5 @@
 package com.tasfe.framework.crud.mysql.impls.jpa.genericdao.jpa;
 
-import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.jpa.impl.GenericJpaRepositoryImpl;
 import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.jpa.lookup.GenericQueryLookupStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -50,7 +49,8 @@ public class GenericJpaRepositoryFactory extends JpaRepositoryFactory {
 	@Override
 	protected Class<?> getRepositoryBaseClass(RepositoryMetadata metadata) {
 		//使用自定义的CustomJpaRepositoryImpl
-		return GenericJpaRepositoryImpl.class;
+		//return GenericJpaRepositoryImpl.class;
+		return  null;
 	}
 
 	@Override

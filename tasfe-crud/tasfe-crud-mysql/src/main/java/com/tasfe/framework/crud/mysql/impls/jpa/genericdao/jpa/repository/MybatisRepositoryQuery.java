@@ -71,7 +71,7 @@ public class MybatisRepositoryQuery implements RepositoryQuery {
 
     @Override
     public QueryMethod getQueryMethod() {
-        return new QueryMethod(method , repositoryMetadata) ;
+        return new QueryMethod(method , repositoryMetadata,null) ;
     }
 
     /**

@@ -112,9 +112,9 @@ public class GeneralMapperReflectUtil {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             if (camelCase) {
-                columns.add(StringUtil.camelToUnderline(field.getName()));
+                columns.add("`"+ StringUtil.camelToUnderline(field.getName())+"`");
             } else {
-                columns.add(field.getName());
+                columns.add("`"+field.getName()+"`");
             }
         }
         return columns;

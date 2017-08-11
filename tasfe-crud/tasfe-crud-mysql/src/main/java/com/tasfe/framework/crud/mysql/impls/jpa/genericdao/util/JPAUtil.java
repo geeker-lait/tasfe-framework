@@ -1,8 +1,8 @@
 package com.tasfe.framework.crud.mysql.impls.jpa.genericdao.util;
 
-import com.dao.genericdao.dialect.MySQLDialectWithoutFK;
-import com.dao.genericdao.dialect.Oracle10gDialectWithoutFK;
-import com.dao.genericdao.dialect.PostgreSQL9DialectWithoutFK;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.dialect.MySQLDialectWithoutFK;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.dialect.Oracle10gDialectWithoutFK;
+import com.tasfe.framework.crud.mysql.impls.jpa.genericdao.dialect.PostgreSQL9DialectWithoutFK;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.dialect.H2Dialect;
 import org.hibernate.dialect.SQLServer2008Dialect;

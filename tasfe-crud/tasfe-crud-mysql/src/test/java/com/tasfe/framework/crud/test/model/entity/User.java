@@ -2,6 +2,7 @@ package com.tasfe.framework.crud.test.model.entity;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.tasfe.framework.crud.api.enums.StoragerType;
 import com.tasfe.framework.crud.api.annotation.Storager;
@@ -18,8 +19,10 @@ import com.tasfe.framework.crud.mysql.type.DataState;
 @Storager(storage={StoragerType.MYSQL})
 public class User{
 
+   /* @Transient
     public static final String ID = "id";
-    public static final String USER_ID = "userId";
+    @Transient
+    public static final String USER_ID = "userId";*/
 
 
     @Id
