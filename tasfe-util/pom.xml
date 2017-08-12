@@ -39,11 +39,11 @@
 			<version>1.5.9</version>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-project</artifactId>
 			<version>1.5.9</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>javax.servlet</groupId>

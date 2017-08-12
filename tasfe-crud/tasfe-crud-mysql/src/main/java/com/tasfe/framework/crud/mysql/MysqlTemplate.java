@@ -18,6 +18,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +36,12 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
 
     private SqlSession sqlSession;
 
+    private boolean camelCase = false;
+
+    @PostConstruct
+    private void init(){
+        this.camelCase = sqlSessionFactory.getConfiguration().isMapUnderscoreToCamelCase();
+    }
 
     /********************************** in *************************************/
     @Override
@@ -42,7 +49,7 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
         Map<String, Object> param = new HashMap<>();
         Class<?> clazz = t.getClass();
         String tableName = GeneralMapperReflectUtil.getTableName(clazz);
-        Map<String, String> mapping = GeneralMapperReflectUtil.getFieldValueMappingExceptNull(t, false);
+        Map<String, String> mapping = GeneralMapperReflectUtil.getFieldValueMappingExceptNull(t, camelCase);
         param.put("tableName", tableName);
         param.put("columnValueMapping", mapping);
         sqlSession.update(Crudable.IN, param);
@@ -67,7 +74,7 @@ public class MysqlTemplate extends CrudTemplate implements RdbOperator, Initiali
             }
             if (columns.size() == 0) {
                 Class<?> clazz = t.getClass();
-                columns = GeneralMapperReflectUtil.getAllColumns(clazz, false);
+                columns = GeneralMapperReflectUtil.getAllColumns(clazz, camelCase);
             }
             Map<String, String> mapping = GeneralMapperReflectUtil.getAllFieldValueMapping(t);
             dataList.add(mapping);
