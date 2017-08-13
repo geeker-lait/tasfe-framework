@@ -1,4 +1,4 @@
-package com.tasfe.framework.crud.api.params;
+package com.tasfe.framework.crud.api.criteria;
 
 /**
  * Created by Lait on 2017/8/6.

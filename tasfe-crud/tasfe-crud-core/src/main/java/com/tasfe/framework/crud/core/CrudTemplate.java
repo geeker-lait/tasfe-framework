@@ -2,7 +2,7 @@ package com.tasfe.framework.crud.core;
 
 import com.tasfe.framework.crud.api.enums.CrudMethod;
 import com.tasfe.framework.crud.api.CrudOperator;
-import com.tasfe.framework.crud.api.params.Criteria;
+import com.tasfe.framework.crud.api.criteria.Criteria;
 import com.tasfe.framework.crud.api.params.CrudParam;
 import com.tasfe.framework.crud.api.params.Pagination;
 import org.springframework.beans.BeansException;

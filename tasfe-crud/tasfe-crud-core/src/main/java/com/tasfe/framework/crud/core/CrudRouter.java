@@ -94,8 +94,7 @@ public class CrudRouter implements ApplicationContextAware {
                     case LIST:
                         break;
                     case FIND:
-                        crudable._find(crudParam.getEntity(), crudParam.getCriteria());
-                        break;
+                        return crudable._find(crudParam.getEntity(), crudParam.getCriteria());
                     case UPD:
                         return crudable._upd(crudParam.getEntity());
                     case UPDS:

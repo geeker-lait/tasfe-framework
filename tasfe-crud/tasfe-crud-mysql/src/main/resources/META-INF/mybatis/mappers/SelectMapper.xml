@@ -5,25 +5,25 @@
     <select id="_query" parameterType="map" resultType="hashmap">
         <![CDATA[
 
-        select
+        SELECT
         <foreach item="column" index="index" collection="columns" separator=",">
             ${column}
         </foreach>
-        from ${table}
-        <where>
+        FROM ${table}
+        <WHERE>
             <if test="whereExp != null">
                 <foreach item="exp" index="index" collection="whereExp" separator=" ">
                     ${exp}
                 </foreach>
             </if>
-        </where>
+        </WHERE>
 
         <if test="orderExp != null">
-            order by ${orderExp}
+            ORDER BY ${orderExp}
         </if>
 
         <if test="limit != null">
-            limit #{limit.start},#{limit.offset}
+            LIMIT #{limit.start},#{limit.offset}
         </if>
 
         ]]>
@@ -31,26 +31,26 @@
 
 
     <select id="_find" parameterType="map" resultType="hashmap">
-        select
-        <foreach item="column" index="index" collection="_columns" separator="," >
+        SELECT
+        <foreach item="column" index="index" collection="_columns_" separator="," >
             ${column}
         </foreach>
-        from ${_table}
+        FROM ${_table_}
         <where>
-            <if test="_whereExp != null">
-                ${_whereExp}
+            <if test="_where_exp_ != null">
+                ${_where_exp_}
             </if>
         </where>
 
-        <if test="_orderExp.size > 0 and _orderExp != null">
-            order by
-            <foreach item="order" index="index" collection="_orderExp" separator=",">
+        <if test="_order_exp_ != null and _order_exp_.size > 0">
+            ORDER BY
+            <foreach item="order" index="index" collection="_order_exp_" separator=",">
                 ${order}
             </foreach>
         </if>
 
-        <if test="_limit != null">
-            limit #{_limit.start},#{_limit.offset}
+        <if test="_limit_ != null">
+            LIMIT #{_limit_.start},#{_limit_.offset}
         </if>
     </select>
 

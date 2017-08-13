@@ -1,4 +1,4 @@
-package com.tasfe.framework.crud.api.params;
+package com.tasfe.framework.crud.api.criteria;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

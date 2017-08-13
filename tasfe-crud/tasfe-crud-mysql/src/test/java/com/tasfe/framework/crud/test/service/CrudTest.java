@@ -1,14 +1,13 @@
 package com.tasfe.framework.crud.test.service;
 
-import com.tasfe.framework.crud.api.params.Criteria;
-import com.tasfe.framework.crud.api.params.Operator;
+import com.tasfe.framework.crud.api.criteria.Criteria;
+import com.tasfe.framework.crud.api.enums.Operator;
 import com.tasfe.framework.crud.core.CrudTemplate;
 import com.tasfe.framework.crud.test.model.entity.Member;
 import com.tasfe.framework.crud.test.model.entity.User;
-import com.tasfe.framework.crud.test.mysql.dao.UserMapper;
+import org.hibernate.annotations.SourceType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -89,12 +88,14 @@ public class CrudTest {
 
     @Test
     public void testFind() throws Exception {
-        User user = new User();
-        user.setEmail("lait.zhang@gmail.com");
-        user.setId(96L);
+        Member member = new Member();
+        member.setEmail("lait.zhang@gmail.com");
+        member.setId(1L);
+        member.setUserId(11L);
 
-        Criteria criteria = Criteria.from(User.class).where().and("id", Operator.EQ).endWhere();
-        List<User> userass = crudTemplate.find(user,criteria);
+        Criteria criteria = Criteria.from(Member.class).where().and("userId",Operator.EQ).endWhere();
+        List<Member> userass = crudTemplate.find(member,criteria);
+        System.out.println(userass);
 
     }
 

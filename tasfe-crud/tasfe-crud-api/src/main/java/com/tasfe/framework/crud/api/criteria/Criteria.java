@@ -1,5 +1,6 @@
-package com.tasfe.framework.crud.api.params;
+package com.tasfe.framework.crud.api.criteria;
 
+import com.tasfe.framework.crud.api.enums.Operator;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -13,13 +14,15 @@ import java.util.List;
 public class Criteria {
     private Class<?> clazz;
 
-    private List<String> selects = new ArrayList<>();
-
-    private Where where;
 
     private Limit limit;
+    private Where where = new Where(this);
+
+    private List<String> selects = new ArrayList<>();
 
     private List<String> order = new ArrayList<>();
+
+    private List<String> group = new ArrayList<>();
 
     private Criteria(){
 
@@ -39,13 +42,24 @@ public class Criteria {
     }
 
     public Where where(){
+        return where;
+    }
+
+    public Where groupWhere(){
         where = new Where(this);
         return where;
     }
 
 
+     public Criteria group(Where where){
 
-    public Criteria order(String ...fileds){
+
+        return  this;
+    }
+
+
+
+    public Criteria orderBy(String ...fileds){
         this.order.addAll(Arrays.asList(fileds));
         return this;
     }
@@ -63,4 +77,8 @@ public class Criteria {
     }
 
 
+    public Criteria groupBy(String ...fileds) {
+
+        return this;
+    }
 }
