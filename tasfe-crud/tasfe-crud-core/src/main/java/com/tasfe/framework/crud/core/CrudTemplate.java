@@ -95,17 +95,28 @@ public abstract class CrudTemplate implements CrudOperator,ApplicationContextAwa
      * @return
      */
     @Override
-    public <T> void insert(T record) throws Exception {
+    public <T> void save(T record) throws Exception {
         CrudParam crudParam = new CrudParam(CrudMethod.IN,record);
         crudRouter.route(crudParam);
     }
 
     @Override
-    public <T> void insertBatch(List<T> records) throws Exception {
+    public <T> void save(List<T> records) throws Exception {
         CrudParam crudParam = new CrudParam(CrudMethod.INS,records);
         crudRouter.route(crudParam);
     }
 
+    @Override
+    public <T> void saveOrUpd(T record) throws Exception {
+        CrudParam crudParam = new CrudParam(CrudMethod.INS,record);
+        crudRouter.route(crudParam);
+    }
+
+    @Override
+    public <T> void saveOrUpds(List<T> records) throws Exception {
+        CrudParam crudParam = new CrudParam(CrudMethod.INS,records);
+        crudRouter.route(crudParam);
+    }
 
     /**
      * 获取数据

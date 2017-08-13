@@ -4,6 +4,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.tasfe.framework.crud.api.annotation.Sharding;
 import com.tasfe.framework.crud.api.enums.StoragerType;
 import com.tasfe.framework.crud.api.annotation.Storager;
 import org.apache.ibatis.type.Alias;
@@ -17,6 +18,7 @@ import com.tasfe.framework.crud.mysql.type.DataState;
 @Alias("User")
 @Table(name = "t_user")
 @Storager(storage={StoragerType.MYSQL})
+@Sharding(key="id")
 public class User{
 
    /* @Transient
