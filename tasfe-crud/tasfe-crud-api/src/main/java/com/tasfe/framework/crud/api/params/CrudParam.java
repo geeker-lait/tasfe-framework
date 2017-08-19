@@ -1,5 +1,6 @@
 package com.tasfe.framework.crud.api.params;
 
+import com.tasfe.framework.crud.api.criteria.Criteria;
 import com.tasfe.framework.crud.api.enums.CrudMethod;
 import lombok.Data;
 

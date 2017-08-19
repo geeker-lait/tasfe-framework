@@ -4,16 +4,16 @@
 <mapper namespace="deleter">
     <delete id="_del" parameterType="map">
         <![CDATA[
-    delete from ${tableName}
-    where ${primaryKey} = #{primaryValue}
+    delete from ${_table_}
+    where ${_pk_} = #{_pv_}
         ]]>
     </delete>
 
     <delete id="_dels" parameterType="map">
         <![CDATA[
 
-    delete from ${tableName}
-    where ${conditionExp}
+    delete from ${_table_}
+    where ${_where_exp_}
 
         ]]>
     </delete>

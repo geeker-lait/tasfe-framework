@@ -1,6 +1,6 @@
 package com.tasfe.framework.crud.api.operator;
 
-import com.tasfe.framework.crud.api.params.Criteria;
+import com.tasfe.framework.crud.api.criteria.Criteria;
 
 import java.util.List;
 

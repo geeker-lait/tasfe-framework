@@ -1,12 +1,12 @@
-package com.tasfe.framework.crud.api.params;
+package com.tasfe.framework.crud.api.enums;
 
 /**
  * Created by Lait on 2017/8/11.
  */
 public enum  Condition {
 
-    AND("and"),
-    OR("or");
+    AND("AND"),
+    OR("OR");
 
     private String value;
     Condition(String value) {

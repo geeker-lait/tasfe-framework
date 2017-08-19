@@ -5,24 +5,24 @@
 
     <!-- 单挑插入 -->
     <insert id="_in" parameterType="map" keyProperty="id">
-        insert into ${tableName}
-        <foreach item="columnValue" index="columnName" collection="columnValueMapping" open="(" separator="," close=")">
+        insert into ${_table_}
+        <foreach item="columnValue" index="columnName" collection="_kv_mapping_" open="(" separator="," close=")">
             ${columnName}
         </foreach>
         values
-        <foreach item="columnValue" index="columnName" collection="columnValueMapping" open="(" separator="," close=")">
+        <foreach item="columnValue" index="columnName" collection="_kv_mapping_" open="(" separator="," close=")">
             #{columnValue}
         </foreach>
     </insert>
 
     <!-- 批量插入 -->
     <insert id="_ins" parameterType="map"  keyProperty="id">
-        insert into ${tableName}
-        <foreach item="columnName" index="index" collection="columns" open="(" separator="," close=")">
+        insert into ${_table_}
+        <foreach item="columnName" index="index" collection="_columns_" open="(" separator="," close=")">
             ${columnName}
         </foreach>
         values
-        <foreach item="rowMapping" index="index" collection="dataList" separator=",">
+        <foreach item="rowMapping" index="index" collection="_datas_" separator=",">
             <foreach item="columnValue" index="columnName" collection="rowMapping" open="(" separator="," close=")">
                 #{columnValue}
             </foreach>

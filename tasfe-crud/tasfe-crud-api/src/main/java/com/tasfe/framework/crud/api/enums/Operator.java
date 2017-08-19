@@ -1,4 +1,4 @@
-package com.tasfe.framework.crud.api.params;
+package com.tasfe.framework.crud.api.enums;
 
 /**
  * Created by Lait on 2017/8/11.
@@ -11,6 +11,9 @@ public enum Operator {
     GTE(">="),
     LT("<"),
     LTE("<="),
+    LIKE("LIKE"),
+    LLIKE("LLIKE"),
+    RLIKE("RLIKE"),
     ADD("+"),
     SUB("-"),
     MUL("*"),
@@ -23,6 +26,10 @@ public enum Operator {
     }
     public String value(){
         return this.value;
+    }
+
+    public static void main(String[] args) {
+        System.out.printf(Operator.LLIKE.toString());
     }
 
 }

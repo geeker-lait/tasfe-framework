@@ -1,14 +1,13 @@
 package com.tasfe.framework.crud.test.service;
 
-import com.tasfe.framework.crud.api.params.Criteria;
-import com.tasfe.framework.crud.api.params.Operator;
+import com.tasfe.framework.crud.api.criteria.Criteria;
+import com.tasfe.framework.crud.api.enums.Operator;
 import com.tasfe.framework.crud.core.CrudTemplate;
 import com.tasfe.framework.crud.test.model.entity.Member;
 import com.tasfe.framework.crud.test.model.entity.User;
-import com.tasfe.framework.crud.test.mysql.dao.UserMapper;
+import org.hibernate.annotations.SourceType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -55,6 +54,7 @@ public class CrudTest {
         u.setOrderId(random.nextInt());
         u.setEmail("lait.zhang@gmail.com");
         u.setMobilePhone("15801818092");
+        u.setPassword("123");
         return u;
     }
 
@@ -69,15 +69,16 @@ public class CrudTest {
     @Test
     public void testInsert() throws Exception {
 
-//        crudTemplate.insert(getUser());
-        //crudTemplate.insertBatch(getUsers(10));
+        crudTemplate.save(getUser());
+
+        crudTemplate.save(getUsers(10));
 
         Member member = new Member();
         member.setEmail("lait");
         member.setUserId(11L);
         member.setDeptId(1);
         member.setOrderId(111);
-        crudTemplate.insert(member);
+        crudTemplate.save(member);
 
         // 自定义填充方式
         //User user1 = mysqlTemplate.forParam(user).exec("doXX").fill(User.class);
@@ -89,12 +90,14 @@ public class CrudTest {
 
     @Test
     public void testFind() throws Exception {
-        User user = new User();
-        user.setEmail("lait.zhang@gmail.com");
-        user.setId(96L);
+        Member member = new Member();
+        member.setEmail("lait.zhang@gmail.com");
+        member.setId(1L);
+        member.setUserId(11L);
 
-        Criteria criteria = Criteria.from(User.class).where().and("id", Operator.EQ).endWhere();
-        List<User> userass = crudTemplate.find(user,criteria);
+        Criteria criteria = Criteria.from(Member.class).where().and("userId",Operator.EQ).endWhere();
+        List<Member> userass = crudTemplate.find(member,criteria);
+        System.out.println(userass);
 
     }
 
@@ -160,13 +163,13 @@ public class CrudTest {
     @Test
     public void testTemplateInsert() throws Exception {
         User u = getUser();
-        crudTemplate.insert(u);
+        crudTemplate.save(u);
     }
 
     @Test
     public void testOperationInsert() throws Exception {
         User u = getUser();
-        crudTemplate.insert(u);
+        crudTemplate.save(u);
     }
 
 
